@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--charcoal);
+  --color-foreground: var(--offwhite);
+  --color-gold: var(--gold);
+  --color-charcoal: var(--charcoal);
+  --color-offwhite: var(--offwhite);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-cormorant);
+  --font-heading: var(--font-cormorant);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  --gold: #c9a84c;
+  --charcoal: #0f0f0f;
+  --charcoal-2: #161616;
+  --charcoal-3: #1e1e1e;
+  --charcoal-4: #2a2a2a;
+  --offwhite: #f5f0e8;
+  --muted: #888880;
+  --card: var(--charcoal-2);
+  --card-foreground: var(--offwhite);
+  --popover: var(--charcoal-2);
+  --popover-foreground: var(--offwhite);
+  --primary: var(--gold);
+  --primary-foreground: var(--charcoal);
+  --secondary: var(--charcoal-3);
+  --secondary-foreground: var(--offwhite);
+  --muted-foreground: var(--muted);
+  --accent: var(--gold);
+  --accent-foreground: var(--charcoal);
+  --border: var(--charcoal-4);
+  --input: var(--charcoal-4);
+  --ring: var(--gold);
+  --radius: 1rem;
+  --background: var(--charcoal);
+  --foreground: var(--offwhite);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--charcoal);
+  color: var(--offwhite);
+}
+
+::selection {
+  background: rgba(201, 168, 76, 0.92);
+  color: var(--charcoal);
+}
+
+* {
+  border-color: var(--border);
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--charcoal-2);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--charcoal-2);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 9999px;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  * {
+    @apply outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+}

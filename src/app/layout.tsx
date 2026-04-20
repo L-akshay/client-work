@@ -1,0 +1,58 @@
+import type { Metadata } from "next"
+import { Cormorant_Garamond, DM_Sans } from "next/font/google"
+
+import "./globals.css"
+import Navbar from "@/components/layout/Navbar"
+import Footer from "@/components/layout/Footer"
+import CustomCursor from "@/components/ui/CustomCursor"
+import BackToTop from "@/components/ui/BackToTop"
+import ScrollProgressBar from "@/components/ui/ScrollProgressBar"
+import PageTransition from "@/components/ui/PageTransition"
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500", "600", "700"],
+})
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  weight: ["400", "500", "700"],
+})
+
+export const metadata: Metadata = {
+  title: {
+    default: "NovaPR | Premium PR & Marketing Agency",
+    template: "%s | NovaPR",
+  },
+  description:
+    "Strategic PR, social, creative, influencer, and search campaigns for ambitious brands.",
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${cormorant.variable} ${dmSans.variable}`}
+    >
+      <body className="min-h-screen bg-[#0F0F0F] font-sans text-[#F5F0E8] antialiased">
+        <ScrollProgressBar />
+        <CustomCursor />
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <main className="flex-1 overflow-x-hidden">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+        </div>
+        <BackToTop />
+      </body>
+    </html>
+  )
+}
