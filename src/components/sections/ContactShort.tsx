@@ -6,8 +6,13 @@ import SectionLabel from "@/components/ui/SectionLabel"
 
 export default function ContactShort() {
   return (
-    <section className="px-5 py-18 lg:px-16 lg:py-24">
-      <div className="mx-auto max-w-4xl">
+    <section className="relative overflow-hidden px-5 py-18 lg:px-16 lg:py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-10 size-48 rounded-full bg-[#C9A84C]/[0.04] blur-3xl animate-float-orb" />
+        <div className="absolute bottom-0 right-0 size-60 rounded-full bg-[#C9A84C]/[0.03] blur-3xl animate-float-orb-reverse" />
+      </div>
+
+      <div className="relative mx-auto max-w-4xl">
         <FadeUp delay={0}>
           <SectionLabel
             label="Contact"
@@ -19,13 +24,15 @@ export default function ContactShort() {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-          <div className="mt-12 rounded-[32px] border border-[#C9A84C]/15 bg-[#161616] p-8 lg:p-10">
+          <div className="relative mt-12 overflow-hidden rounded-[32px] border border-[#C9A84C]/15 bg-[#161616] p-8 shadow-[0_28px_90px_rgba(15,15,15,0.24)] lg:p-10">
+            <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/65 to-transparent" />
             <ContactForm compact />
             <Link
               href="/contact"
-              className="mt-6 inline-flex min-h-11 items-center font-sans text-xs uppercase tracking-[0.24em] text-[#C9A84C] transition-colors duration-700 hover:text-[#F5F0E8]"
+              className="group mt-6 inline-flex min-h-11 items-center gap-3 font-ui text-[11px] uppercase tracking-[0.28em] text-[#C9A84C] transition-colors duration-700 hover:text-[#F5F0E8]"
             >
-              See full contact -&gt;
+              <span>See full contact</span>
+              <span className="h-px w-10 bg-[#C9A84C] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:w-14 group-hover:bg-[#F5F0E8]" />
             </Link>
           </div>
         </FadeUp>

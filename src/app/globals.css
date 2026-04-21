@@ -14,6 +14,7 @@
   --font-sans: var(--font-dm-sans);
   --font-serif: var(--font-cormorant);
   --font-heading: var(--font-cormorant);
+  --font-ui: var(--font-manrope);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   --color-ring: var(--ring);
@@ -117,4 +118,47 @@ body {
   body {
     @apply min-h-screen;
   }
+}
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.333%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-33.333%); }
+  to { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 35s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 28s linear infinite;
+}
+
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -14px, 0) scale(1.04);
+  }
+}
+
+@keyframes float-orb-reverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-16px, 20px, 0) scale(0.98);
+  }
+}
+
+.animate-float-orb {
+  animation: float-orb 11s ease-in-out infinite;
+}
+
+.animate-float-orb-reverse {
+  animation: float-orb-reverse 13s ease-in-out infinite;
 }

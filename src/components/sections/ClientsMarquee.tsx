@@ -1,50 +1,29 @@
 "use client"
 
 const rowOne = [
-  "Google",
-  "Meta",
-  "Times of India",
-  "NDTV",
-  "Reuters",
-  "Bloomberg",
-  "BBC",
-  "Forbes",
+  "Google", "Meta", "Times of India", "NDTV",
+  "Reuters", "Bloomberg", "BBC", "Forbes",
 ]
 
 const rowTwo = [
-  "Economic Times",
-  "Hindustan Times",
-  "The Hindu",
-  "Mint",
-  "Zee News",
-  "ABP News",
-  "Business Standard",
+  "Economic Times", "Hindustan Times", "The Hindu",
+  "Mint", "Zee News", "ABP News", "Business Standard",
 ]
 
-function MarqueeRow({
-  items,
-  direction,
-}: {
-  items: string[]
-  direction: "left" | "right"
-}) {
-  const duplicatedItems = [...items, ...items]
+function MarqueeRow({ items, direction }: { items: string[], direction: "left" | "right" }) {
+  const duplicated = [...items, ...items, ...items]
 
   return (
     <div className="overflow-hidden">
-      <div
-        className={`marquee-track ${
-          direction === "left" ? "marquee-left" : "marquee-right"
-        } flex w-max items-center gap-5 whitespace-nowrap py-3 hover:[animation-play-state:paused]`}
-      >
-        {duplicatedItems.map((item, index) => (
-          <div key={`${item}-${index}`} className="flex items-center gap-5">
-            <span className="font-serif text-2xl font-light text-[#888880]">
+      <div className={`flex w-max items-center gap-6 whitespace-nowrap py-3 ${
+        direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
+      } hover:[animation-play-state:paused]`}>
+        {duplicated.map((item, i) => (
+          <div key={i} className="flex items-center gap-6">
+            <span className="cursor-default font-serif text-2xl font-light text-[#888880] transition-all duration-500 hover:-translate-y-0.5 hover:text-[#F5F0E8]">
               {item}
             </span>
-            {index < duplicatedItems.length - 1 ? (
-              <span className="font-serif text-2xl text-[#C9A84C]">·</span>
-            ) : null}
+            <span className="text-lg text-[#C9A84C]/40">|</span>
           </div>
         ))}
       </div>
@@ -54,72 +33,27 @@ function MarqueeRow({
 
 export default function ClientsMarquee() {
   return (
-    <section className="border-y border-[#C9A84C]/10 bg-[#0F0F0F] py-12">
-      <div className="mx-auto max-w-7xl px-5 lg:px-16">
-        <p className="mb-8 text-center font-sans text-xs uppercase tracking-[0.25em] text-[#888880]">
-          Our Team Has Worked With
-        </p>
+    <section className="relative overflow-hidden border-y border-[#C9A84C]/10 bg-[#0F0F0F] py-12">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-4 size-44 rounded-full bg-[#C9A84C]/[0.03] blur-3xl animate-float-orb" />
+        <div className="absolute bottom-0 right-0 size-56 rounded-full bg-[#C9A84C]/[0.02] blur-3xl animate-float-orb-reverse" />
+      </div>
 
-        <div className="mask-fade space-y-1 overflow-hidden">
+      <p className="relative mb-8 text-center font-ui text-[11px] uppercase tracking-[0.34em] text-[#888880]">
+        Our Team Has Worked With
+      </p>
+      <div
+        className="relative overflow-hidden"
+        style={{
+          maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+        }}
+      >
+        <div className="space-y-1">
           <MarqueeRow items={rowOne} direction="left" />
           <MarqueeRow items={rowTwo} direction="right" />
         </div>
       </div>
-
-      <style jsx>{`
-        .mask-fade {
-          mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 10%,
-            black 90%,
-            transparent 100%
-          );
-          -webkit-mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 10%,
-            black 90%,
-            transparent 100%
-          );
-        }
-
-        .marquee-track {
-          will-change: transform;
-          animation-iteration-count: infinite;
-          animation-timing-function: linear;
-        }
-
-        .marquee-left {
-          animation-duration: 35s;
-          animation-name: marquee-left;
-        }
-
-        .marquee-right {
-          animation-duration: 28s;
-          animation-name: marquee-right;
-        }
-
-        @keyframes marquee-left {
-          from {
-            transform: translateX(0);
-          }
-
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
-        @keyframes marquee-right {
-          from {
-            transform: translateX(-50%);
-          }
-
-          to {
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </section>
   )
 }

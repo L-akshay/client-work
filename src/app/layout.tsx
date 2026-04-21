@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Cormorant_Garamond, DM_Sans } from "next/font/google"
+import { Cormorant_Garamond, DM_Sans, Manrope } from "next/font/google"
 
 import "./globals.css"
 import Navbar from "@/components/layout/Navbar"
@@ -21,6 +21,12 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
 })
 
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  weight: ["400", "500", "600", "700"],
+})
+
 export const metadata: Metadata = {
   title: {
     default: "NovaPR | Premium PR & Marketing Agency",
@@ -39,14 +45,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${cormorant.variable} ${dmSans.variable}`}
+      className={`${cormorant.variable} ${dmSans.variable} ${manrope.variable}`}
     >
       <body className="min-h-screen bg-[#0F0F0F] font-sans text-[#F5F0E8] antialiased">
         <ScrollProgressBar />
         <CustomCursor />
         <div className="flex min-h-screen flex-col">
           <Navbar />
-          <main className="flex-1 overflow-x-hidden">
+          <main className="flex-1 overflow-x-clip">
             <PageTransition>{children}</PageTransition>
           </main>
           <Footer />

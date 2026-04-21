@@ -10,7 +10,6 @@ export const navigationLinks: {
   { label: "Services", href: "/services", hasDropdown: true },
   { label: "Case Studies", href: "/case-studies", hasDropdown: false },
   { label: "Blog", href: "/blog", hasDropdown: false },
-  { label: "Careers", href: "/careers", hasDropdown: false },
   { label: "Contact Us", href: "/contact", hasDropdown: false },
 ]
 
@@ -25,6 +24,5 @@ export const footerQuickLinks = [
   { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Blog", href: "/blog" },
-  { label: "Careers", href: "/careers" },
   { label: "Contact Us", href: "/contact" },
 ]

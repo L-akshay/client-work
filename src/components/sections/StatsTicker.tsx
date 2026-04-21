@@ -49,7 +49,7 @@ function Counter({
         {display}
         {suffix}
       </p>
-      <p className="mt-4 font-sans text-sm uppercase tracking-[0.24em] text-[#0F0F0F]">
+      <p className="mt-4 font-ui text-[11px] uppercase tracking-[0.32em] text-[#0F0F0F]">
         {label}
       </p>
     </div>
@@ -58,8 +58,12 @@ function Counter({
 
 export default function StatsTicker() {
   return (
-    <section className="bg-[#C9A84C] px-5 py-10 lg:px-16 lg:py-12">
-      <div className="mx-auto grid max-w-7xl gap-0 divide-y divide-[#0F0F0F]/20 md:grid-cols-2 md:divide-y-0 lg:grid-cols-4 lg:divide-x">
+    <section className="relative overflow-hidden bg-[#C9A84C] px-5 py-10 lg:px-16 lg:py-12">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/3 top-0 h-full w-px bg-[#0F0F0F]/8" />
+        <div className="absolute right-1/4 top-0 h-full w-px bg-[#0F0F0F]/8" />
+      </div>
+      <div className="relative mx-auto grid max-w-7xl gap-0 divide-y divide-[#0F0F0F]/20 md:grid-cols-2 md:divide-y-0 lg:grid-cols-4 lg:divide-x">
         {statsTicker.map((stat, index) => (
           <Counter
             key={stat.label}

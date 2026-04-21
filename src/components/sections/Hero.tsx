@@ -85,22 +85,33 @@ export default function Hero() {
           <FadeUp delay={0.1}>
             <h1 className="mt-7 max-w-5xl font-serif text-[clamp(40px,8vw,88px)] font-light leading-[0.9] text-[#F5F0E8]">
               We Are Your Brand&apos;s{" "}
-              <span className="relative inline-flex min-w-[1ch] align-baseline text-[#C9A84C] italic">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={rotatingWords[activeWord]}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -18 }}
-                    transition={{
-                      duration: 0.7,
-                      ease: [0.25, 0.1, 0.25, 1],
-                    }}
-                    className="inline-block"
+              <span className="relative inline-grid grid-cols-1 grid-rows-1 align-baseline text-[#C9A84C] italic">
+                {rotatingWords.map((word) => (
+                  <span
+                    key={`sizer-${word}`}
+                    aria-hidden
+                    className="invisible col-start-1 row-start-1 inline-block"
                   >
-                    {rotatingWords[activeWord]}
-                  </motion.span>
-                </AnimatePresence>
+                    {word}
+                  </span>
+                ))}
+                <span className="col-start-1 row-start-1 inline-block overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={rotatingWords[activeWord]}
+                      initial={{ opacity: 0, y: "0.35em" }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: "-0.35em" }}
+                      transition={{
+                        duration: 0.55,
+                        ease: [0.25, 0.1, 0.25, 1],
+                      }}
+                      className="inline-block"
+                    >
+                      {rotatingWords[activeWord]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
               </span>{" "}
               Voice
             </h1>

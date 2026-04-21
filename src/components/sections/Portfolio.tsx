@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 
 import FadeUp from "@/components/ui/FadeUp"
 import PortfolioCard from "@/components/ui/PortfolioCard"
@@ -10,7 +11,6 @@ import {
   portfolioItems,
   type PortfolioCategory,
 } from "@/lib/data/portfolio"
-import Image from "next/image"
 
 const filters: ("All" | PortfolioCategory)[] = [
   "All",

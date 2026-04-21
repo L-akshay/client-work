@@ -20,7 +20,7 @@ function Field({
       <Input
         type={type}
         placeholder={placeholder}
-        className="min-h-14 rounded-full border-[#2A2A2A] bg-[#161616] pl-11 text-[#F5F0E8] placeholder:text-[#888880] focus-visible:border-[#C9A84C] focus-visible:ring-[rgba(201,168,76,0.16)]"
+        className="min-h-14 rounded-full border-[#2A2A2A] bg-[#161616] pl-11 font-ui text-[#F5F0E8] placeholder:text-[#888880] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:border-[#C9A84C]/40 focus-visible:border-[#C9A84C] focus-visible:ring-[rgba(201,168,76,0.16)]"
       />
     </div>
   )
@@ -40,6 +40,7 @@ function SelectField({
       defaultValue=""
       className={cn(
         "min-h-14 w-full appearance-none rounded-full border border-[#2A2A2A] bg-[#161616] px-5 font-sans text-sm text-[#F5F0E8] outline-none transition-colors duration-700 focus:border-[#C9A84C]",
+        "font-ui hover:border-[#C9A84C]/40",
         className
       )}
     >
@@ -91,12 +92,12 @@ export default function ContactForm({ compact = false }: ContactFormProps) {
       <Textarea
         rows={compact ? 5 : 7}
         placeholder="Tell us what you are building, launching, or solving."
-        className="rounded-[28px] border-[#2A2A2A] bg-[#161616] px-5 py-4 text-[#F5F0E8] placeholder:text-[#888880] focus-visible:border-[#C9A84C] focus-visible:ring-[rgba(201,168,76,0.16)]"
+        className="rounded-[28px] border-[#2A2A2A] bg-[#161616] px-5 py-4 font-ui text-[#F5F0E8] placeholder:text-[#888880] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:border-[#C9A84C]/40 focus-visible:border-[#C9A84C] focus-visible:ring-[rgba(201,168,76,0.16)]"
       />
 
       <button
         type="submit"
-        className="relative inline-flex min-h-14 w-full items-center justify-center overflow-hidden rounded-full border border-[#C9A84C] bg-[#C9A84C] px-6 py-4 font-sans text-xs uppercase tracking-[0.24em] text-[#0F0F0F] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.01]"
+        className="relative inline-flex min-h-14 w-full items-center justify-center overflow-hidden rounded-full border border-[#C9A84C] bg-[#C9A84C] px-6 py-4 font-ui text-[11px] uppercase tracking-[0.3em] text-[#0F0F0F] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_16px_30px_rgba(201,168,76,0.2)]"
       >
         <span className="absolute inset-y-0 left-[-28%] w-1/4 -skew-x-12 bg-[rgba(245,240,232,0.24)] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:left-[110%]" />
         <span className="relative z-10">Submit Inquiry</span>

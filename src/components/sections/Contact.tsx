@@ -50,11 +50,11 @@ export default function Contact() {
                   {[
                     {
                       icon: MapPin,
-                      text: "3rd Floor, 211, Phase 3, Okhla, New Delhi, India, 110020",
+                      text: "387 Park Avenue South, 8th Floor, New York, NY 10016, USA",
                     },
                     { icon: Clock, text: "Monday - Friday, 9am to 6pm" },
-                    { icon: Phone, text: "+91 93325 52737" },
-                    { icon: Mail, text: "hello@novapr.in" },
+                    { icon: Phone, text: "+1 (212) 555-0134" },
+                    { icon: Mail, text: "hello@novapr.co" },
                   ].map((item) => {
                     const Icon = item.icon
 
@@ -75,7 +75,7 @@ export default function Contact() {
               <div className="overflow-hidden rounded-[32px] border border-[#C9A84C]/15 bg-[#161616]">
                 <iframe
                   title="NovaPR office location"
-                  src="https://www.google.com/maps?q=Okhla%20New%20Delhi&output=embed"
+                  src="https://www.google.com/maps?q=387%20Park%20Avenue%20South%20New%20York%20NY&output=embed"
                   className="h-[320px] w-full grayscale contrast-125"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

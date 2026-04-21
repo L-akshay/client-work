@@ -41,7 +41,7 @@ export default function PortfolioPreview() {
               <button
                 type="button"
                 onClick={() => scrollByAmount("prev")}
-                className="inline-flex size-11 items-center justify-center rounded-full border border-[#C9A84C] text-[#C9A84C] transition-colors duration-700 hover:bg-[#C9A84C] hover:text-[#0F0F0F]"
+                className="hidden size-11 items-center justify-center rounded-full border border-[#C9A84C] text-[#C9A84C] transition-colors duration-700 hover:bg-[#C9A84C] hover:text-[#0F0F0F] lg:inline-flex"
                 aria-label="Previous projects"
               >
                 <ChevronLeft className="size-4" />
@@ -49,14 +49,14 @@ export default function PortfolioPreview() {
               <button
                 type="button"
                 onClick={() => scrollByAmount("next")}
-                className="inline-flex size-11 items-center justify-center rounded-full border border-[#C9A84C] text-[#C9A84C] transition-colors duration-700 hover:bg-[#C9A84C] hover:text-[#0F0F0F]"
+                className="hidden size-11 items-center justify-center rounded-full border border-[#C9A84C] text-[#C9A84C] transition-colors duration-700 hover:bg-[#C9A84C] hover:text-[#0F0F0F] lg:inline-flex"
                 aria-label="Next projects"
               >
                 <ChevronRight className="size-4" />
               </button>
               <Link
                 href="/case-studies"
-                className="ml-3 inline-flex min-h-11 items-center font-sans text-xs uppercase tracking-[0.24em] text-[#C9A84C] transition-colors duration-700 hover:text-[#F5F0E8]"
+                className="inline-flex min-h-11 items-center font-sans text-xs uppercase tracking-[0.24em] text-[#C9A84C] transition-colors duration-700 hover:text-[#F5F0E8] lg:ml-3"
               >
                 View All Projects -&gt;
               </Link>

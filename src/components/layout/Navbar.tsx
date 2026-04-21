@@ -17,7 +17,6 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 
@@ -87,13 +86,14 @@ export default function Navbar() {
     <header
       className={cn(
         "fixed top-0 z-[75] w-full border-b border-transparent transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
-        scrolled && "border-[#C9A84C]/15 bg-[#0F0F0F]/92 backdrop-blur-xl"
+        scrolled && "border-[#C9A84C]/15 bg-[#0F0F0F]/92 shadow-[0_18px_60px_rgba(15,15,15,0.32)] backdrop-blur-xl"
       )}
     >
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent opacity-70" />
       <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-5 lg:px-16">
         <Link
           href="/"
-          className="font-serif text-3xl font-light tracking-tight text-[#F5F0E8]"
+          className="font-serif text-3xl font-light tracking-[0.01em] text-[#F5F0E8]"
         >
           Nova<span className="text-[#C9A84C]">PR</span>
         </Link>
@@ -112,7 +112,7 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       className={cn(
-                        "group flex min-h-11 items-center gap-2 font-sans text-xs uppercase tracking-[0.16em] text-[#888880] transition-colors duration-700 hover:text-[#C9A84C]",
+                        "group relative flex min-h-11 items-center gap-2 font-ui text-[11px] uppercase tracking-[0.24em] text-[#888880] transition-colors duration-700 hover:text-[#C9A84C] after:absolute after:bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#C9A84C] after:transition-all after:duration-500 after:ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:after:w-full",
                         pathname.startsWith("/services") && "text-[#C9A84C]"
                       )}
                     >
@@ -135,7 +135,7 @@ export default function Navbar() {
                           onMouseLeave={closeServices}
                         >
                           <div className="rounded-[28px] border border-[#C9A84C]/15 bg-[#161616] p-6 shadow-[0_30px_80px_rgba(15,15,15,0.55)]">
-                            <p className="mb-5 font-sans text-[11px] uppercase tracking-[0.24em] text-[#C9A84C]">
+                            <p className="mb-5 font-ui text-[11px] uppercase tracking-[0.28em] text-[#C9A84C]">
                               Our Services
                             </p>
                             <div className="space-y-3">
@@ -143,7 +143,7 @@ export default function Navbar() {
                                 <Link
                                   key={service.href}
                                   href={service.href}
-                                  className="block rounded-2xl border border-transparent px-4 py-3 font-sans text-sm text-[#888880] transition-all duration-700 hover:border-[#C9A84C]/15 hover:bg-[#0F0F0F] hover:text-[#F5F0E8]"
+                                  className="block rounded-2xl border border-transparent px-4 py-3 font-ui text-sm text-[#888880] transition-all duration-700 hover:border-[#C9A84C]/15 hover:bg-[#0F0F0F] hover:text-[#F5F0E8]"
                                 >
                                   {service.label}
                                 </Link>
@@ -158,7 +158,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "font-sans text-xs uppercase tracking-[0.16em] text-[#888880] transition-colors duration-700 hover:text-[#C9A84C]",
+                      "relative font-ui text-[11px] uppercase tracking-[0.24em] text-[#888880] transition-colors duration-700 hover:text-[#C9A84C] after:absolute after:bottom-[-10px] after:left-0 after:h-px after:w-0 after:bg-[#C9A84C] after:transition-all after:duration-500 after:ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:after:w-full",
                       pathname === link.href && "text-[#C9A84C]"
                     )}
                   >
@@ -173,38 +173,41 @@ export default function Navbar() {
         <div className="hidden lg:block">
           <Link
             href="/contact"
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#C9A84C] px-6 py-3 font-sans text-xs uppercase tracking-[0.22em] text-[#C9A84C] transition-all duration-700 hover:bg-[#C9A84C] hover:text-[#0F0F0F]"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#C9A84C] px-6 py-3 font-ui text-[11px] uppercase tracking-[0.28em] text-[#C9A84C] transition-all duration-700 hover:-translate-y-0.5 hover:bg-[#C9A84C] hover:text-[#0F0F0F] hover:shadow-[0_14px_30px_rgba(201,168,76,0.18)]"
           >
             Start a Conversation
           </Link>
         </div>
 
-        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-          <SheetTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-[#F5F0E8] hover:bg-[#161616] hover:text-[#C9A84C] lg:hidden"
-              aria-label="Open menu"
-            >
-              <Menu className="size-6" />
-            </Button>
-          </SheetTrigger>
+        <Button
+          variant="ghost"
+          size="icon"
+          data-nav-toggle
+          className="relative z-80 text-[#F5F0E8] hover:bg-[#161616] hover:text-[#C9A84C] lg:hidden"
+          aria-label={sheetOpen ? "Close menu" : "Open menu"}
+          aria-expanded={sheetOpen}
+          onClick={() => setSheetOpen((prev) => !prev)}
+        >
+          <Menu className="size-6" />
+        </Button>
 
+        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetContent
             side="right"
-            showCloseButton
-            className="w-full border-l border-[#C9A84C]/20 bg-[#0F0F0F] px-5 py-6 text-[#F5F0E8] sm:max-w-md"
+            showCloseButton={false}
+            onPointerDownOutside={(event) => {
+              const target = event.target
+              if (
+                target instanceof Element &&
+                target.closest("[data-nav-toggle]")
+              ) {
+                event.preventDefault()
+              }
+            }}
+            className="border-l border-[#C9A84C]/20 bg-[#0F0F0F] px-5 pt-28 pb-6 text-[#F5F0E8] data-[side=right]:w-full data-[side=right]:sm:max-w-md"
           >
-            <SheetHeader className="px-0">
-              <SheetTitle className="sr-only">Navigation</SheetTitle>
-              <Link
-                href="/"
-                className="font-serif text-3xl font-light text-[#F5F0E8]"
-                onClick={() => setSheetOpen(false)}
-              >
-                Nova<span className="text-[#C9A84C]">PR</span>
-              </Link>
+            <SheetHeader className="sr-only px-0">
+              <SheetTitle>Navigation</SheetTitle>
             </SheetHeader>
 
             <motion.nav
@@ -229,7 +232,7 @@ export default function Navbar() {
                           <Link
                             key={service.href}
                             href={service.href}
-                            className="block py-2 font-sans text-xs uppercase tracking-[0.18em] text-[#888880] transition-colors duration-700 hover:text-[#C9A84C]"
+                            className="block py-2 font-ui text-[11px] uppercase tracking-[0.24em] text-[#888880] transition-colors duration-700 hover:text-[#C9A84C]"
                             onClick={() => setSheetOpen(false)}
                           >
                             {service.label}
@@ -245,7 +248,7 @@ export default function Navbar() {
             <SheetFooter className="px-0 pb-0">
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#C9A84C] px-6 py-4 font-sans text-xs uppercase tracking-[0.22em] text-[#0F0F0F]"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#C9A84C] px-6 py-4 font-ui text-[11px] uppercase tracking-[0.28em] text-[#0F0F0F]"
                 onClick={() => setSheetOpen(false)}
               >
                 Start a Conversation
