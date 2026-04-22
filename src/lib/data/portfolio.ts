@@ -1,4 +1,14 @@
-export type PortfolioCategory = "PR" | "Social" | "Creative" | "Influencer"
+export type PortfolioCategory =
+  | "SaaS"
+  | "Consumer Goods"
+  | "Professional Services"
+  | "Fintech"
+
+export type PortfolioResult = {
+  label: string
+  value: string
+  detail: string
+}
 
 export type PortfolioItem = {
   id: number
@@ -9,9 +19,12 @@ export type PortfolioItem = {
   result: string
   excerpt: string
   image: string
-  challenge: string
-  solution: string
-  outcome: string
+  market: string
+  engagementDuration: string
+  situation: string
+  strategy: string
+  execution: string
+  results: PortfolioResult[]
   metrics: {
     value: string
     label: string
@@ -21,150 +34,238 @@ export type PortfolioItem = {
 export const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
-    slug: "way2news-brand-narrative",
-    category: "PR",
-    client: "Way2News",
-    title: "National brand narrative launch for a high-growth news platform",
-    result: "180+ stories secured across leading national and regional outlets",
+    slug: "saas-platform-us-market-entry",
+    category: "SaaS",
+    client: "UK-Founded SaaS Platform",
+    title: "SaaS Platform Enters Competitive US Market",
+    result:
+      "24 original US articles, 2.1 million estimated readers reached, and a 38% rise in inbound demo requests over 9 months.",
     excerpt:
-      "We built a multi-angle launch narrative that positioned the brand as both culturally relevant and commercially credible.",
+      "A growing SaaS company needed earned authority in the United States before unfamiliar buyers would take the brand seriously against well-funded local competitors.",
     image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80",
-    challenge:
-      "Way2News needed to establish national credibility fast in a crowded news aggregator market with skeptical media.",
-    solution:
-      "We built a three-layer narrative — founder story, product differentiation, and cultural relevance — then activated it across 40+ journalist relationships simultaneously.",
-    outcome:
-      "180+ stories secured across leading national and regional outlets within 90 days of launch.",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&q=80",
+    market: "United States",
+    engagementDuration: "9 months",
+    situation:
+      "A UK-founded SaaS company had built a strong product and a growing European customer base. The US market was the next logical step, but the brand had almost no media presence in American trade publications and no established credibility with US buyers who were unfamiliar with the company name. Their category was crowded with well-funded American competitors who dominated the editorial conversation. Entering required more than advertising. It required earned authority.",
+    strategy:
+      "We identified three distinct audiences: enterprise procurement teams reading vertical trade media, technology journalists covering the software category, and investor influencers active on LinkedIn and financial news platforms. Instead of distributing press releases uniformly, we built a tiered content strategy that gave each audience a reason to engage. For trade media, we developed a series of data-backed opinion pieces positioning the company's founders as category experts. For technology journalists, we arranged product briefings tied to a genuine product milestone. For investor audiences, we coordinated a CEO commentary campaign around regulatory changes affecting the software category.",
+    execution:
+      "Over nine months, we secured initial coverage in two US technology trade publications, developed an ongoing byline relationship with one vertical industry outlet, and managed a product launch news cycle that generated coordinated coverage across seven publications within a 72-hour window. Crisis preparation materials were developed for a regulatory question that arose mid-engagement, which the team navigated without negative press.",
+    results: [
+      {
+        label: "Media Placements Secured",
+        value: "24 original articles",
+        detail: "Placed in US publications over a 9-month engagement.",
+      },
+      {
+        label: "Audience Reach",
+        value: "2.1 million readers",
+        detail: "Estimated across placed articles using publisher-reported figures.",
+      },
+      {
+        label: "Inbound Lead Impact",
+        value: "+38%",
+        detail: "Increase in US inbound demo requests over the engagement period.",
+      },
+      {
+        label: "Investor Visibility",
+        value: "First-time financial press coverage",
+        detail: "CEO quoted in two financial technology news publications.",
+      },
+      {
+        label: "Narrative Outcome",
+        value: "Global solution positioning",
+        detail:
+          "The company shifted from being seen as a European platform to a global solution with proven European scale.",
+      },
+    ],
     metrics: [
-      { value: "180+", label: "Stories Secured" },
-      { value: "90", label: "Days to Launch" },
-      { value: "40+", label: "Media Outlets" },
+      { value: "24", label: "US Articles" },
+      { value: "2.1M", label: "Estimated Reach" },
+      { value: "+38%", label: "Demo Requests" },
     ],
   },
   {
     id: 2,
-    slug: "physics-wallah-social",
-    category: "Social",
-    client: "Physics Wallah",
-    title: "Social momentum campaign built for education-category dominance",
-    result: "3.2x engagement growth across campaign-led content windows",
+    slug: "consumer-brand-reputation-rebuild",
+    category: "Consumer Goods",
+    client: "Consumer Goods Brand",
+    title: "Consumer Brand Rebuilds Reputation After Product Recall",
+    result:
+      "Brand sentiment moved from net negative to net neutral within 90 days, while positive stories claimed 4 of the top 10 Google results within 6 months.",
     excerpt:
-      "The content system combined high-frequency ideas with sharper performance feedback loops to keep momentum compounding.",
+      "After a recall damaged trust and search visibility, the challenge was to rebuild credibility without looking defensive or rushing back into promotion.",
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80",
-    challenge:
-      "Physics Wallah needed social content that could sustain momentum across competitive exam seasons without burning out the audience.",
-    solution:
-      "We designed a content system built around weekly themes, student success signals, and platform-native formats that fed performance feedback loops.",
-    outcome:
-      "3.2x engagement growth across campaign-led content windows over two quarters.",
+      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1400&q=80",
+    market: "United Kingdom",
+    engagementDuration: "6 months",
+    situation:
+      "A consumer goods brand had issued a product recall affecting a mid-range product line. The recall was handled correctly from a regulatory standpoint, but the media coverage had been disproportionate and remained indexed in search results. Consumer trust scores had declined visibly in brand tracking data. The company needed a structured communications recovery that rebuilt credibility without appearing defensive or dismissive of the original issue.",
+    strategy:
+      "Reputation recovery after a product crisis has one non-negotiable principle: transparency before promotion. We advised against any attempt to suppress the original coverage or pivot to positive stories too quickly, both of which signal defensiveness and often generate additional scrutiny. Instead, we built a structured 90-day transparency programme that led with the company's internal response measures, quality improvements made as a direct result of the recall, and consumer communication initiatives. The promotional recovery followed, not preceded, the credibility rebuilding phase.",
+    execution:
+      "We developed a CEO-authored accountability statement distributed through national consumer media, a quality improvement editorial series for trade publications, and a customer outreach communications package that gave the company's service team consistent messaging. A media monitoring protocol was established with clear escalation criteria. The company participated in an industry roundtable on product safety standards, earning positive contextual coverage.",
+    results: [
+      {
+        label: "Sentiment Shift",
+        value: "Net neutral in 90 days",
+        detail:
+          "Media monitoring moved from net negative to net neutral inside the first 90 days.",
+      },
+      {
+        label: "Positive Coverage",
+        value: "11 mentions",
+        detail:
+          "Positive editorial mentions landed in national consumer press within 6 months.",
+      },
+      {
+        label: "Search Narrative",
+        value: "4 of top 10 results",
+        detail:
+          "Positive stories occupied four of the first ten Google results for the brand name within 6 months.",
+      },
+      {
+        label: "Consumer Trust",
+        value: "Recovered to within 8 points",
+        detail:
+          "Internal brand tracking showed trust scores returning close to the pre-recall baseline.",
+      },
+      {
+        label: "Crisis Preparation",
+        value: "Full playbook delivered",
+        detail: "A future-ready crisis communications playbook was created for the client team.",
+      },
+    ],
     metrics: [
-      { value: "3.2x", label: "Engagement Growth" },
-      { value: "2", label: "Quarters" },
-      { value: "60+", label: "Content Formats" },
+      { value: "90", label: "Days to Neutral" },
+      { value: "11", label: "Positive Mentions" },
+      { value: "4/10", label: "Top Search Results" },
     ],
   },
   {
     id: 3,
-    slug: "gm-modular-creative",
-    category: "Creative",
-    client: "GM Modular",
-    title: "Premium creative refresh for a legacy brand entering a new phase",
-    result: "Unified launch system rolled out across digital, press, and events",
+    slug: "professional-services-thought-leadership-platform",
+    category: "Professional Services",
+    client: "Management Consultancy",
+    title: "Professional Services Firm Builds Thought Leadership Platform",
+    result:
+      "22 bylined articles, two recurring publication relationships, and a 340% combined LinkedIn audience increase across partner profiles.",
     excerpt:
-      "We translated a complex product story into an editorial visual language that felt premium, modern, and campaign-ready.",
+      "A respected consultancy was winning on referrals but losing visibility in competitive pitches because larger firms owned the editorial conversation.",
     image:
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80",
-    challenge:
-      "GM Modular had strong products but a dated visual identity that undersold their premium positioning in the market.",
-    solution:
-      "We conducted a full brand signal audit and rebuilt the visual language from typography to campaign art direction, creating a system that worked across digital, press, and events.",
-    outcome:
-      "Unified launch system rolled out across digital, press, and events within 6 weeks.",
+      "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1400&q=80",
+    market: "Canada and USA",
+    engagementDuration: "12 months",
+    situation:
+      "A mid-size management consultancy had strong client retention and a good internal reputation but was effectively invisible in the editorial conversation of its category. Larger competitors commanded thought leadership in major business publications. The firm was winning business through referrals but losing consideration in competitive pitches where brand recognition played a role. Senior partners had valuable perspectives but no established publication relationships and no content infrastructure to express them consistently.",
+    strategy:
+      "We identified two senior partners whose areas of expertise intersected with high-interest editorial topics in the business press: organisational change management and digital transformation governance. Rather than pursuing broad coverage, we focused on establishing genuine depth in a small number of relevant publications over 12 months. Credibility compounds in PR - a second article in the same publication is worth more than two articles in two different outlets because it signals editorial endorsement, not just one-time placement.",
+    execution:
+      "We developed a content calendar of six major opinion pieces per partner per year, each tied to current business news and supported by original research or client-anonymised case evidence. Journalist relationship development targeted specific editors at four target publications. Speaking opportunity submissions were coordinated with the content calendar to create reinforcing signals. A LinkedIn editorial programme ran alongside earned media to ensure partner visibility between placements.",
+    results: [
+      {
+        label: "Publication Relationships",
+        value: "2 ongoing contributor relationships",
+        detail:
+          "Established with major business publications relevant to the firm's category.",
+      },
+      {
+        label: "Thought Leadership Volume",
+        value: "22 bylined articles",
+        detail: "Placed across target publications over a 12-month engagement.",
+      },
+      {
+        label: "Speaking Engagements",
+        value: "3 invitations received",
+        detail: "Two conference speaking opportunities were ultimately accepted.",
+      },
+      {
+        label: "Pitch Impact",
+        value: "4 pitch debrief mentions",
+        detail:
+          "The firm reported positive brand-recognition feedback in four competitive pitch debriefs.",
+      },
+      {
+        label: "LinkedIn Reach",
+        value: "+340%",
+        detail:
+          "The two partner profiles grew their combined audiences by 340% during the programme.",
+      },
+    ],
     metrics: [
-      { value: "6", label: "Weeks to Rollout" },
-      { value: "3", label: "Channels Unified" },
-      { value: "100%", label: "Brand Consistency" },
+      { value: "22", label: "Bylined Articles" },
+      { value: "2", label: "Contributor Relationships" },
+      { value: "+340%", label: "LinkedIn Audience Growth" },
     ],
   },
   {
     id: 4,
-    slug: "coin-fantasy-influencer",
-    category: "Influencer",
-    client: "Coin Fantasy",
-    title: "Creator-led awareness drive built around trust and mass relevance",
-    result: "12M+ campaign impressions with above-benchmark engagement",
+    slug: "fintech-series-a-media-visibility",
+    category: "Fintech",
+    client: "Fintech Startup",
+    title: "Startup Achieves Media Visibility Before Series A Round",
+    result:
+      "The Series A announcement was covered by 9 publications without press release distribution, followed by 3 organic mentions after the round closed.",
     excerpt:
-      "The program mixed macro reach with niche trust to deliver visibility that felt credible rather than overproduced.",
+      "The company needed institutional media credibility before investor conversations intensified, with a founder story journalists could tell without heavy company control.",
     image:
-      "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1200&q=80",
-    challenge:
-      "Coin Fantasy needed mass awareness in the fantasy sports category without appearing overproduced or inauthentic to a skeptical young audience.",
-    solution:
-      "We mixed macro creators for reach with niche voices for trust, building a two-tier program that felt native to each platform while staying on-brand.",
-    outcome:
-      "12M+ campaign impressions with above-benchmark engagement rates across all creator tiers.",
-    metrics: [
-      { value: "12M+", label: "Impressions" },
-      { value: "9.6%", label: "Avg Engagement" },
-      { value: "2-tier", label: "Creator Strategy" },
+      "https://images.unsplash.com/photo-1559526324-593bc073d938?w=1400&q=80",
+    market: "Australia and UK",
+    engagementDuration: "5 months",
+    situation:
+      "A fintech startup approaching a Series A funding round needed institutional media credibility before investor conversations intensified. Sophisticated investors in this category do background research and often factor in the quality of a company's editorial presence when assessing brand maturity. The company had a strong product and compelling founder story but no media history and no relationships with financial or technology journalists.",
+    strategy:
+      "We focused the engagement on two outcomes: securing coverage in publications that investors in this category actively read, and creating a coherent founder narrative that journalists could tell without the company needing to control every word. The second objective is often underestimated. When a journalist can write a compelling story about a founder from public information alone, unprompted mentions begin to occur. The goal was to make the company easy to cover, not just willing to be covered.",
+    execution:
+      "A founder narrative document was developed as the strategic foundation. This covered origin story, market problem framing, and differentiation argument in journalistically usable terms. Targeted briefings were arranged with reporters at fintech, startup, and business news outlets across Australia and the UK. A data-driven research piece on payment friction in the SME sector was produced to give journalists a news hook independent of the company's own milestones.",
+    results: [
+      {
+        label: "Pre-Round Coverage",
+        value: "2 founder profiles",
+        detail:
+          "The founder was profiled in two relevant fintech publications before the funding round announcement.",
+      },
+      {
+        label: "Round Announcement Reach",
+        value: "9 publications",
+        detail:
+          "Series A coverage landed across nine outlets without distributing a press release.",
+      },
+      {
+        label: "Journalist Relationships",
+        value: "6 target reporters",
+        detail:
+          "Active contact was established with journalists across fintech, startup, and business outlets.",
+      },
+      {
+        label: "Investor Commentary",
+        value: "Credibility signal acknowledged",
+        detail:
+          "The lead investor publicly cited the company's media presence as a credibility signal.",
+      },
+      {
+        label: "Follow-On Coverage",
+        value: "3 organic mentions",
+        detail:
+          "Three publications mentioned the company within 60 days of the round close without outreach.",
+      },
     ],
-  },
-  {
-    id: 5,
-    slug: "heal-foundation-pr",
-    category: "PR",
-    client: "Heal Foundation",
-    title: "Cause-led communications strategy for sustained awareness",
-    result: "4.1x uplift in media pickup across issue-focused campaigns",
-    excerpt:
-      "We aligned data, human stories, and advocacy positioning to make every campaign story easier for media to carry forward.",
-    image:
-      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80",
-    challenge:
-      "Heal Foundation needed consistent media presence for cause-led campaigns that competed with faster-moving commercial news cycles.",
-    solution:
-      "We aligned data stories, human impact narratives, and advocacy positioning into a repeatable campaign framework that gave media clear hooks every cycle.",
-    outcome:
-      "4.1x uplift in media pickup across issue-focused campaigns over six months.",
     metrics: [
-      { value: "4.1x", label: "Media Pickup Lift" },
-      { value: "6", label: "Months" },
-      { value: "30+", label: "Stories Published" },
-    ],
-  },
-  {
-    id: 6,
-    slug: "grabon-creator-commerce",
-    category: "Influencer",
-    client: "GrabOn",
-    title: "Creator and commerce activation tuned for conversion moments",
-    result: "6.1x improvement in content reuse value across paid and owned media",
-    excerpt:
-      "We built a creator layer that gave the campaign stronger trust signals and more flexible assets for amplification.",
-    image:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80",
-    challenge:
-      "GrabOn needed creator content that drove conversion moments, not just awareness, during high-intent shopping windows.",
-    solution:
-      "We built a creator brief system focused on trust signals and flexible asset creation, allowing content to be repurposed across paid, owned, and earned channels.",
-    outcome:
-      "6.1x improvement in content reuse value with stronger conversion signals across all media layers.",
-    metrics: [
-      { value: "6.1x", label: "Content Reuse Value" },
-      { value: "3", label: "Media Layers" },
-      { value: "40+", label: "Creator Assets" },
+      { value: "9", label: "Round Coverage Placements" },
+      { value: "6", label: "Reporter Relationships" },
+      { value: "3", label: "Organic Follow-On Mentions" },
     ],
   },
 ]
 
 export const featuredCaseStudy = {
-  client: "Featured Campaign",
-  title: "A cross-channel reputation and growth program built for category leadership",
-  result: "50M+ media impressions and consistent share-of-voice gains over two quarters",
+  client: "Page 1 | Case Studies",
+  title: "Results That Speak Before We Do",
+  result:
+    "Four client engagements. Different industries, different goals, different starting points. The common thread is a clear PR strategy executed with editorial discipline and measurable outcomes.",
   excerpt:
-    "Our featured work combines PR, social, creative, and creator partnerships into one disciplined system designed to move both perception and performance.",
+    "The cases below document real client challenges, the strategic decisions we made, how we executed, and what changed as a result. We present them because the specifics are more credible than generalised claims.",
   image:
-    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80",
+    "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80",
 }

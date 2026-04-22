@@ -18,7 +18,7 @@ export default function PortfolioCard({
   return (
     <article
       className={cn(
-        "group overflow-hidden rounded-[28px] border border-[#C9A84C]/15 bg-[#161616]",
+        "group flex h-full flex-col overflow-hidden rounded-[28px] border border-[#C9A84C]/15 bg-[#161616]",
         preview
           && "relative transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-[6px] hover:shadow-[0_28px_80px_rgba(15,15,15,0.45)]"
       )}
@@ -41,7 +41,7 @@ export default function PortfolioCard({
         ) : null}
       </div>
 
-      <div className="p-7">
+      <div className="flex flex-1 flex-col p-7">
         <div className="flex flex-wrap items-center gap-3">
           <span className="rounded-full border border-[#C9A84C]/20 px-3 py-2 font-sans text-[11px] uppercase tracking-[0.22em] text-[#C9A84C]">
             {item.category}
@@ -51,7 +51,11 @@ export default function PortfolioCard({
           </span>
         </div>
 
-        <h3 className="mt-5 font-serif text-3xl font-light text-[#F5F0E8]">
+        <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.22em] text-[#888880]">
+          {item.market} | {item.engagementDuration}
+        </p>
+
+        <h3 className="mt-5 font-serif text-[clamp(28px,2.4vw,38px)] font-light leading-[1.08] text-[#F5F0E8]">
           {item.title}
         </h3>
         <p className="mt-4 font-sans text-sm leading-relaxed text-[#888880]">
@@ -62,7 +66,7 @@ export default function PortfolioCard({
         </p>
         <Link
           href={`/case-studies/${item.slug}`}
-          className="mt-6 inline-flex min-h-11 items-center font-sans text-xs uppercase tracking-[0.24em] text-[#C9A84C] transition-colors duration-700 hover:text-[#F5F0E8]"
+          className="mt-auto pt-6 inline-flex min-h-11 items-center font-sans text-xs uppercase tracking-[0.24em] text-[#C9A84C] transition-colors duration-700 hover:text-[#F5F0E8]"
         >
           <span
             className={cn(

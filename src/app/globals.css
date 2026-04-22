@@ -162,3 +162,67 @@ body {
 .animate-float-orb-reverse {
   animation: float-orb-reverse 13s ease-in-out infinite;
 }
+
+@keyframes project-card-drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(14px, 10px, 0);
+  }
+}
+
+.animate-project-drift {
+  animation: project-card-drift 14s ease-in-out infinite;
+}
+
+@keyframes gold-dot-pulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 rgba(201, 168, 76, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-1px) scale(1.18);
+    box-shadow: 0 0 16px rgba(201, 168, 76, 0.45);
+  }
+}
+
+.animate-gold-dot-pulse {
+  animation: gold-dot-pulse 4.8s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+@keyframes projects-closing-drift {
+  0%, 100% {
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(calc(-50% + 22px), 18px, 0) scale(1.04);
+  }
+}
+
+.animate-projects-closing-drift {
+  animation: projects-closing-drift 16s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right,
+  .animate-float-orb,
+  .animate-float-orb-reverse,
+  .animate-project-drift,
+  .animate-gold-dot-pulse,
+  .animate-projects-closing-drift {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

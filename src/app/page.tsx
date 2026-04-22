@@ -2,7 +2,7 @@ import ClientsMarquee from "@/components/sections/ClientsMarquee"
 import ContactShort from "@/components/sections/ContactShort"
 import Hero from "@/components/sections/Hero"
 import LetsTalk from "@/components/sections/LetsTalk"
-import PortfolioPreview from "@/components/sections/PortfolioPreview"
+import ProjectsPreview from "@/components/sections/ProjectsPreview"
 import ServicesPreview from "@/components/sections/ServicesPreview"
 import StatsTicker from "@/components/sections/StatsTicker"
 import Testimonials from "@/components/sections/Testimonials"
@@ -20,7 +20,7 @@ export default function Home() {
       <ServicesPreview />
       <WhyChoosePR />
       <WhySubscribe />
-      <PortfolioPreview />
+      <ProjectsPreview />
       <WhyChooseUs />
       <StatsTicker />
       <Testimonials />

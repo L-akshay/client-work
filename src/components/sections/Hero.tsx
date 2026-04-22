@@ -85,7 +85,7 @@ export default function Hero() {
           <FadeUp delay={0.1}>
             <h1 className="mt-7 max-w-5xl font-serif text-[clamp(40px,8vw,88px)] font-light leading-[0.9] text-[#F5F0E8]">
               We Are Your Brand&apos;s{" "}
-              <span className="relative inline-grid grid-cols-1 grid-rows-1 align-baseline text-[#C9A84C] italic">
+              <span className="relative inline-grid grid-cols-1 grid-rows-1 align-baseline text-[#C9A84C] italic [line-height:1.08]">
                 {rotatingWords.map((word) => (
                   <span
                     key={`sizer-${word}`}
@@ -95,7 +95,7 @@ export default function Hero() {
                     {word}
                   </span>
                 ))}
-                <span className="col-start-1 row-start-1 inline-block overflow-hidden">
+                <span className="col-start-1 row-start-1 inline-block overflow-hidden pb-[0.08em]">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={rotatingWords[activeWord]}

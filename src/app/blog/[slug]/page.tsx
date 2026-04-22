@@ -2,8 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
+import ClosingCta from "@/components/ui/ClosingCta"
 import FadeUp from "@/components/ui/FadeUp"
-import GoldButton from "@/components/ui/GoldButton"
 import PageHero from "@/components/ui/PageHero"
 import { blogPosts } from "@/lib/data/blog"
 
@@ -74,16 +74,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </FadeUp>
 
-          <FadeUp delay={0.3}>
-            <div className="mt-16 border-t border-charcoal-4 pt-12 text-center">
-              <p className="mb-6 font-sans text-xs uppercase tracking-[0.24em] text-muted">
-                Want to work with us?
-              </p>
-              <GoldButton href="/contact">Start a Conversation</GoldButton>
-            </div>
-          </FadeUp>
         </div>
       </section>
+
+      <ClosingCta
+        eyebrow="Want to work with us?"
+        primaryCta={{ href: "/contact", label: "Start a Conversation" }}
+      />
     </>
   )
 }

@@ -31,8 +31,8 @@ export default function Footer() {
       </div>
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="grid gap-12 lg:grid-cols-[1.25fr_0.9fr_1fr_1fr]">
-          <div>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.25fr_0.9fr_1fr_1fr] lg:gap-12">
+          <div className="col-span-2 lg:col-span-1">
             <Link href="/" className="font-serif text-3xl font-light tracking-[0.01em] text-[#F5F0E8]">
               Nova<span className="text-[#C9A84C]">PR</span>
             </Link>
@@ -58,16 +58,16 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <h3 className="mb-6 font-ui text-[11px] uppercase tracking-[0.3em] text-[#C9A84C]">
+          <div className="min-w-0">
+            <h3 className="mb-4 font-ui text-[11px] uppercase tracking-[0.3em] text-[#C9A84C] sm:mb-6">
               Quick Links
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1.5 sm:space-y-3">
               {footerQuickLinks.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="group inline-flex min-h-11 items-center font-ui text-sm text-[#888880] transition-colors duration-700 hover:text-[#F5F0E8]"
+                    className="group inline-flex min-h-8 items-center font-ui text-sm text-[#888880] transition-colors duration-700 hover:text-[#F5F0E8] sm:min-h-11"
                   >
                     <span className="relative">
                       {item.label}
@@ -79,16 +79,16 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="mb-6 font-ui text-[11px] uppercase tracking-[0.3em] text-[#C9A84C]">
+          <div className="min-w-0">
+            <h3 className="mb-4 font-ui text-[11px] uppercase tracking-[0.3em] text-[#C9A84C] sm:mb-6">
               Services
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1.5 sm:space-y-3">
               {serviceNavigationLinks.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="group inline-flex min-h-11 items-center font-ui text-sm text-[#888880] transition-colors duration-700 hover:text-[#F5F0E8]"
+                    className="group inline-flex min-h-8 items-center font-ui text-sm text-[#888880] transition-colors duration-700 hover:text-[#F5F0E8] sm:min-h-11"
                   >
                     <span className="relative">
                       {item.label}
@@ -100,8 +100,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="mb-6 font-ui text-[11px] uppercase tracking-[0.3em] text-[#C9A84C]">
+          <div className="col-span-2 lg:col-span-1">
+            <h3 className="mb-4 font-ui text-[11px] uppercase tracking-[0.3em] text-[#C9A84C] sm:mb-6">
               Contact
             </h3>
             <div className="space-y-5 font-ui text-sm text-[#888880]">

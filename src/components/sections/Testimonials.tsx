@@ -1,35 +1,45 @@
 "use client"
 
-import * as React from "react"
-import { AnimatePresence, motion } from "framer-motion"
-
 import FadeUp from "@/components/ui/FadeUp"
 import SectionLabel from "@/components/ui/SectionLabel"
 import TestimonialCard from "@/components/ui/TestimonialCard"
 import { testimonials } from "@/lib/data/testimonials"
-import { cn } from "@/lib/utils"
+
+type TestimonialMarqueeRowProps = {
+  items: typeof testimonials
+  direction: "left" | "right"
+  duration: string
+}
+
+function TestimonialMarqueeRow({
+  items,
+  direction,
+  duration,
+}: TestimonialMarqueeRowProps) {
+  const duplicatedItems = [...items, ...items, ...items]
+
+  return (
+    <div className="overflow-hidden py-3">
+      <div
+        className={`flex w-max items-stretch gap-6 ${
+          direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
+        } hover:[animation-play-state:paused]`}
+        style={{ animationDuration: duration }}
+      >
+        {duplicatedItems.map((testimonial, index) => (
+          <div
+            key={`${testimonial.name}-${index}`}
+            className="w-[min(88vw,30rem)] shrink-0 whitespace-normal md:w-[28rem] lg:w-[30rem]"
+          >
+            <TestimonialCard testimonial={testimonial} active />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function Testimonials() {
-  const [activeIndex, setActiveIndex] = React.useState(0)
-
-  React.useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % testimonials.length)
-    }, 3500)
-
-    return () => window.clearInterval(timer)
-  }, [])
-
-  const previousIndex =
-    (activeIndex - 1 + testimonials.length) % testimonials.length
-  const nextIndex = (activeIndex + 1) % testimonials.length
-
-  const desktopItems = [
-    { index: previousIndex, active: false },
-    { index: activeIndex, active: true },
-    { index: nextIndex, active: false },
-  ]
-
   return (
     <section className="relative overflow-hidden bg-[#0F0F0F] px-5 py-18 md:py-24 lg:px-16">
       <div className="pointer-events-none absolute inset-0">
@@ -48,55 +58,31 @@ export default function Testimonials() {
           />
         </FadeUp>
 
-        <div className="mt-16 hidden lg:grid lg:grid-cols-3 lg:gap-6">
-          {desktopItems.map((item) => (
-            <motion.div
-              key={`${testimonials[item.index].name}-${item.active ? "active" : "side"}`}
-              layout
-              transition={{
-                duration: 0.7,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              className={cn(item.active ? "scale-[1.05]" : "scale-[0.95]")}
-            >
-              <TestimonialCard
-                testimonial={testimonials[item.index]}
-                active={item.active}
-              />
-            </motion.div>
-          ))}
+        <div className="sr-only">
+          <ul>
+            {testimonials.map((testimonial) => (
+              <li key={testimonial.name}>
+                {testimonial.quote} - {testimonial.name}, {testimonial.role}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="mt-14 lg:hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={testimonials[activeIndex].name}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -24 }}
-              transition={{
-                duration: 0.7,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-            >
-              <TestimonialCard testimonial={testimonials[activeIndex]} active />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="mt-10 flex justify-center gap-3">
-          {testimonials.map((testimonial, index) => (
-            <button
-              key={testimonial.name}
-              type="button"
-              onClick={() => setActiveIndex(index)}
-              className={cn(
-                "h-2 rounded-full transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
-                index === activeIndex ? "w-10 bg-[#C9A84C]" : "w-2 bg-[#2A2A2A]"
-              )}
-              aria-label={`Show testimonial ${index + 1}`}
-            />
-          ))}
+        <div
+          className="relative mt-16 overflow-hidden"
+          aria-hidden="true"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          }}
+        >
+          <TestimonialMarqueeRow
+            items={testimonials}
+            direction="left"
+            duration="48s"
+          />
         </div>
       </div>
     </section>

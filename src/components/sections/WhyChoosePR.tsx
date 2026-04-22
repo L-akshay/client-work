@@ -37,10 +37,12 @@ function StatCard({
       initial={{ opacity: 0, y: 16, scale: 0.95 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
-      className={`rounded-[20px] border border-[#C9A84C]/20 bg-[#161616]/90 px-6 py-5 shadow-[0_18px_40px_rgba(15,15,15,0.18)] backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-1 hover:border-[#C9A84C]/35 ${className ?? ""}`}
+      className={`rounded-[18px] border border-[#C9A84C]/20 bg-[#161616]/90 px-5 py-4 text-center shadow-[0_18px_40px_rgba(15,15,15,0.18)] backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-1 hover:border-[#C9A84C]/35 sm:rounded-[20px] sm:px-6 sm:py-5 sm:text-left ${className ?? ""}`}
     >
-      <p className="font-serif text-3xl font-light text-[#C9A84C]">{value}</p>
-      <p className="mt-1 font-sans text-xs uppercase tracking-[0.2em] text-[#888880]">
+      <p className="font-serif text-[clamp(28px,7vw,36px)] font-light text-[#C9A84C]">
+        {value}
+      </p>
+      <p className="mt-1 font-sans text-[10px] uppercase tracking-[0.18em] text-[#888880] sm:text-xs sm:tracking-[0.2em]">
         {label}
       </p>
     </motion.div>
@@ -93,7 +95,7 @@ export default function WhyChoosePR() {
 
         <FadeUp delay={0.15}>
           <div className="relative">
-            <div className="group relative overflow-hidden rounded-[32px] border border-[#C9A84C]/15 shadow-[0_24px_70px_rgba(15,15,15,0.18)]">
+            <div className="group relative hidden aspect-[5/4] overflow-hidden rounded-[32px] border border-[#C9A84C]/15 shadow-[0_24px_70px_rgba(15,15,15,0.18)] sm:block xl:aspect-[11/10]">
               <Image
                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80"
                 alt="Team presentation for communications planning"
@@ -101,22 +103,37 @@ export default function WhyChoosePR() {
                 height={1040}
                 className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-[1.04] group-active:scale-[1.04]"
               />
-              <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-[linear-gradient(to_top,rgba(15,15,15,0.68)_0%,rgba(15,15,15,0.18)_48%,transparent_72%)] transition-opacity duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:opacity-100 group-active:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-[linear-gradient(to_top,rgba(15,15,15,0.76)_0%,rgba(15,15,15,0.22)_46%,transparent_74%)] transition-opacity duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:opacity-100 group-active:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-[radial-gradient(circle_at_82%_18%,rgba(201,168,76,0.16),transparent_24%)] opacity-80" />
 
-              <div className="absolute bottom-6 left-6 hidden lg:block">
-                <StatCard value="500+" label="Brands Elevated" delay={0.4} />
-              </div>
+              <div className="pointer-events-none absolute inset-6 hidden lg:flex">
+                <div className="mt-auto">
+                  <StatCard
+                    value="500+"
+                    label="Brands Elevated"
+                    delay={0.4}
+                    className="w-[240px] xl:w-[260px]"
+                  />
+                </div>
 
-              <div className="absolute right-6 top-6 hidden lg:block">
-                <StatCard value="95%" label="Client Retention" delay={0.5} />
-              </div>
-
-              <div className="absolute right-6 top-1/2 hidden lg:block -translate-y-1/2">
-                <StatCard value="8+" label="Years Experience" delay={0.6} />
+                <div className="ml-auto flex h-full flex-col justify-between items-end">
+                  <StatCard
+                    value="95%"
+                    label="Client Retention"
+                    delay={0.5}
+                    className="w-[220px] xl:w-[240px]"
+                  />
+                  <StatCard
+                    value="8+"
+                    label="Years Experience"
+                    delay={0.6}
+                    className="w-[220px] xl:w-[240px]"
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:hidden">
+            <div className="relative z-10 mx-auto grid max-w-[270px] grid-cols-1 justify-items-center gap-3 sm:max-w-none sm:grid-cols-2 sm:justify-items-stretch lg:hidden">
               <StatCard
                 value="500+"
                 label="Brands Elevated"
@@ -133,7 +150,7 @@ export default function WhyChoosePR() {
                 value="8+"
                 label="Years Experience"
                 delay={0.6}
-                className="w-full sm:col-span-2"
+                className="w-full sm:col-span-2 sm:max-w-[calc(50%-0.375rem)]"
               />
             </div>
           </div>

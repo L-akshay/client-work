@@ -2,8 +2,8 @@ import { Building2, Mail, Phone, User } from "lucide-react"
 
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { cn } from "@/lib/utils"
 import { services } from "@/lib/data/services"
+import { cn } from "@/lib/utils"
 
 function Field({
   icon: Icon,
@@ -58,9 +58,23 @@ function SelectField({
 
 type ContactFormProps = {
   compact?: boolean
+  primarySelectLabel?: string
+  primarySelectOptions?: string[]
+  secondarySelectLabel?: string
+  secondarySelectOptions?: string[]
+  messagePlaceholder?: string
+  submitLabel?: string
 }
 
-export default function ContactForm({ compact = false }: ContactFormProps) {
+export default function ContactForm({
+  compact = false,
+  primarySelectLabel = "Service Interested In",
+  primarySelectOptions = services.map((service) => service.title),
+  secondarySelectLabel = "Budget Range",
+  secondarySelectOptions = ["Under 2L", "2L - 5L", "5L - 10L", "10L+"],
+  messagePlaceholder = "Tell us what you are building, launching, or solving.",
+  submitLabel = "Submit Inquiry",
+}: ContactFormProps) {
   return (
     <form className="space-y-4">
       <div className={cn("grid gap-4", !compact && "md:grid-cols-2")}>
@@ -74,33 +88,22 @@ export default function ContactForm({ compact = false }: ContactFormProps) {
       </div>
 
       <div className={cn("grid gap-4", !compact && "md:grid-cols-2")}>
-        <SelectField
-          defaultLabel="Service Interested In"
-          options={services.map((service) => service.title)}
-        />
-        <SelectField
-          defaultLabel="Budget Range"
-          options={[
-            "Under 2L",
-            "2L - 5L",
-            "5L - 10L",
-            "10L+",
-          ]}
-        />
+        <SelectField defaultLabel={primarySelectLabel} options={primarySelectOptions} />
+        <SelectField defaultLabel={secondarySelectLabel} options={secondarySelectOptions} />
       </div>
 
       <Textarea
         rows={compact ? 5 : 7}
-        placeholder="Tell us what you are building, launching, or solving."
+        placeholder={messagePlaceholder}
         className="rounded-[28px] border-[#2A2A2A] bg-[#161616] px-5 py-4 font-ui text-[#F5F0E8] placeholder:text-[#888880] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:border-[#C9A84C]/40 focus-visible:border-[#C9A84C] focus-visible:ring-[rgba(201,168,76,0.16)]"
       />
 
       <button
         type="submit"
-        className="relative inline-flex min-h-14 w-full items-center justify-center overflow-hidden rounded-full border border-[#C9A84C] bg-[#C9A84C] px-6 py-4 font-ui text-[11px] uppercase tracking-[0.3em] text-[#0F0F0F] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_16px_30px_rgba(201,168,76,0.2)]"
+        className="group relative inline-flex min-h-14 w-full items-center justify-center overflow-hidden rounded-full border border-[#C9A84C] bg-[#C9A84C] px-6 py-4 font-ui text-[11px] uppercase tracking-[0.3em] text-[#0F0F0F] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_16px_30px_rgba(201,168,76,0.2)]"
       >
-        <span className="absolute inset-y-0 left-[-28%] w-1/4 -skew-x-12 bg-[rgba(245,240,232,0.24)] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:left-[110%]" />
-        <span className="relative z-10">Submit Inquiry</span>
+        <span className="absolute inset-y-0 left-[-28%] w-1/4 -skew-x-12 bg-[rgba(245,240,232,0.24)] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:left-[110%]" />
+        <span className="relative z-10">{submitLabel}</span>
       </button>
     </form>
   )

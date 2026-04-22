@@ -18,8 +18,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
-import GhostButton from "@/components/ui/GhostButton"
-import GoldButton from "@/components/ui/GoldButton"
+import ClosingCta from "@/components/ui/ClosingCta"
 import { timeline } from "@/lib/data/timeline"
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
@@ -601,69 +600,6 @@ function ValuesSection() {
   )
 }
 
-function ClosingCta() {
-  const reduced = usePrefersReducedMotion()
-
-  return (
-    <section className="relative overflow-hidden bg-[#0F0F0F] px-5 py-28 lg:px-16 lg:py-40">
-      <div className="pointer-events-none absolute inset-0">
-        <motion.div
-          className="absolute left-1/2 top-1/2 h-[80vh] w-[80vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.20)_0%,rgba(201,168,76,0)_70%)]"
-          initial={reduced ? false : { opacity: 0.5, scale: 0.96 }}
-          animate={
-            reduced
-              ? { opacity: 1, scale: 1 }
-              : { opacity: [0.6, 1, 0.6], scale: [0.96, 1.05, 0.96] }
-          }
-          transition={
-            reduced
-              ? { duration: 0 }
-              : {
-                  duration: 9,
-                  ease: "easeInOut",
-                  repeat: Number.POSITIVE_INFINITY,
-                }
-          }
-        />
-        <div
-          className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.9'/></svg>\")",
-            backgroundSize: "240px 240px",
-          }}
-        />
-      </div>
-
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center">
-        <RevealUp>
-          <p className="font-sans text-[11px] uppercase tracking-[0.42em] text-[#C9A84C]">
-            Next Step
-          </p>
-        </RevealUp>
-        <RevealUp delay={0.1} className="mt-10">
-          <h2 className="font-serif text-[clamp(40px,7vw,96px)] font-light leading-[0.95] text-[#F5F0E8]">
-            Let&apos;s build the next{" "}
-            <span className="italic text-[#C9A84C]">chapter</span> together.
-          </h2>
-        </RevealUp>
-        <RevealUp delay={0.25} className="mt-8 max-w-2xl">
-          <p className="font-sans text-base leading-relaxed text-[#888880] sm:text-lg">
-            If you need a communications partner that can think strategically
-            and execute beautifully, we should talk.
-          </p>
-        </RevealUp>
-        <RevealUp delay={0.4} className="mt-12">
-          <div className="flex flex-col items-center gap-4 sm:flex-row">
-            <GoldButton href="/contact">Contact Us</GoldButton>
-            <GhostButton href="/services">Explore Services</GhostButton>
-          </div>
-        </RevealUp>
-      </div>
-    </section>
-  )
-}
-
 export default function AboutPage() {
   return (
     <>
@@ -672,7 +608,18 @@ export default function AboutPage() {
       <StatsBar />
       <TimelineSection />
       <ValuesSection />
-      <ClosingCta />
+      <ClosingCta
+        eyebrow="Next Step"
+        heading={
+          <>
+            Let&apos;s build the next{" "}
+            <span className="italic text-[#C9A84C]">chapter</span> together.
+          </>
+        }
+        supporting="If you need a communications partner that can think strategically and execute beautifully, we should talk."
+        primaryCta={{ href: "/contact", label: "Contact Us" }}
+        secondaryCta={{ href: "/services", label: "Explore Services" }}
+      />
     </>
   )
 }

@@ -5,8 +5,8 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        title="Let&apos;s Talk"
-        description="Tell us what you are building, launching, or trying to solve. We will help map the right communication strategy around it."
+        title="Start With a Conversation"
+        description="The most useful first step is a direct discussion about your situation and what communications strategy could realistically do for your goals."
         image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1800&q=80"
       />
       <Contact />

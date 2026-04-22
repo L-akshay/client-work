@@ -30,6 +30,15 @@ export type Service = {
   metrics: ServiceMetric[]
 }
 
+export const serviceTickerTags = [
+  "Public Relations",
+  "Social Media Marketing",
+  "Performance Marketing",
+  "Creative Studio",
+  "Influencer Marketing",
+  "SEO & Search Strategy",
+]
+
 export const services: Service[] = [
   {
     slug: "public-relations",

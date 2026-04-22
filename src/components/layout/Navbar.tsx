@@ -184,33 +184,37 @@ export default function Navbar() {
           size="icon"
           data-nav-toggle
           className="relative z-80 text-[#F5F0E8] hover:bg-[#161616] hover:text-[#C9A84C] lg:hidden"
-          aria-label={sheetOpen ? "Close menu" : "Open menu"}
+          aria-label="Open menu"
           aria-expanded={sheetOpen}
-          onClick={() => setSheetOpen((prev) => !prev)}
+          aria-controls="mobile-navigation"
+          onClick={() => setSheetOpen(true)}
         >
           <Menu className="size-6" />
         </Button>
 
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+
           <SheetContent
             side="right"
             showCloseButton={false}
-            onPointerDownOutside={(event) => {
-              const target = event.target
-              if (
-                target instanceof Element &&
-                target.closest("[data-nav-toggle]")
-              ) {
-                event.preventDefault()
-              }
-            }}
             className="border-l border-[#C9A84C]/20 bg-[#0F0F0F] px-5 pt-28 pb-6 text-[#F5F0E8] data-[side=right]:w-full data-[side=right]:sm:max-w-md"
           >
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-7 right-5 z-10 text-[#F5F0E8] hover:bg-[#161616] hover:text-[#C9A84C] lg:hidden"
+              aria-label="Close menu"
+              onClick={() => setSheetOpen(false)}
+            >
+              <Menu className="size-6" />
+            </Button>
+
             <SheetHeader className="sr-only px-0">
               <SheetTitle>Navigation</SheetTitle>
             </SheetHeader>
 
             <motion.nav
+              id="mobile-navigation"
               className="flex flex-1 flex-col justify-center"
               initial="closed"
               animate={sheetOpen ? "open" : "closed"}

@@ -4,11 +4,15 @@ import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"
+
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll"
 import SectionLabel from "@/components/ui/SectionLabel"
+import ServiceTagTicker from "@/components/ui/ServiceTagTicker"
 import {
-  Accordion, AccordionContent,
-  AccordionItem, AccordionTrigger,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
 } from "@/components/ui/accordion"
 import { services } from "@/lib/data/services"
 import { cn } from "@/lib/utils"
@@ -128,12 +132,15 @@ export default function ServicesPreview() {
               href="/services"
               className="inline-flex h-11 items-center font-sans text-xs uppercase tracking-[0.24em] text-gold transition-colors duration-700 hover:text-offwhite"
             >
-              View All Services →
+              View All Services -&gt;
             </Link>
           </div>
         </RevealOnScroll>
 
-        {/* DESKTOP — 500vh wrapper, sticky inner */}
+        <RevealOnScroll>
+          <ServiceTagTicker className="mt-10" duration="30s" />
+        </RevealOnScroll>
+
         <div
           ref={wrapperRef}
           data-services-wrapper
@@ -142,8 +149,6 @@ export default function ServicesPreview() {
         >
           <div className="sticky top-0 h-screen">
             <div className="grid h-full items-center gap-16 py-24 lg:grid-cols-[300px_minmax(0,1fr)]">
-
-              {/* Left: numbered service list */}
               <div className="flex flex-col justify-center space-y-6">
                 {services.map((service, index) => {
                   const active = activeIndex === index
@@ -176,7 +181,7 @@ export default function ServicesPreview() {
                             {service.shortLabel}
                           </p>
                           <div className="mt-3 h-px overflow-hidden bg-charcoal-4">
-                            {active && (
+                            {active ? (
                               <motion.div
                                 key={service.slug}
                                 className="h-full origin-left bg-gold"
@@ -187,7 +192,7 @@ export default function ServicesPreview() {
                                   ease: [0.25, 0.1, 0.25, 1],
                                 }}
                               />
-                            )}
+                            ) : null}
                           </div>
                         </div>
                       </div>
@@ -195,7 +200,6 @@ export default function ServicesPreview() {
                   )
                 })}
 
-                {/* Progress dots */}
                 <div className="flex gap-2 pt-4">
                   {services.map((_, i) => (
                     <button
@@ -214,7 +218,6 @@ export default function ServicesPreview() {
                 </p>
               </div>
 
-              {/* Right: image card */}
               <div className="flex h-full items-center py-8">
                 <div className="w-full overflow-hidden rounded-[32px] border border-gold/15 bg-charcoal-2">
                   <AnimatePresence mode="wait">
@@ -237,7 +240,7 @@ export default function ServicesPreview() {
                       <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,15,15,0.95)_0%,rgba(15,15,15,0.5)_40%,rgba(15,15,15,0.05)_70%)]" />
                       <div className="absolute inset-x-0 bottom-0 p-10">
                         <motion.div
-                          key={activeService.slug + "-content"}
+                          key={`${activeService.slug}-content`}
                           initial={{ opacity: 0, y: 24 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{
@@ -247,26 +250,16 @@ export default function ServicesPreview() {
                           }}
                         >
                           <h3 className="font-serif text-5xl font-light text-offwhite">
-                            {activeService.title}
+                            {activeService.shortLabel}
                           </h3>
                           <p className="mt-4 max-w-2xl font-sans text-base leading-relaxed text-offwhite/80">
                             {activeService.description}
                           </p>
-                          <div className="mt-6 flex flex-wrap gap-3">
-                            {activeService.keywords.map((k) => (
-                              <span
-                                key={k}
-                                className="rounded-full border border-gold/20 bg-black/40 px-4 py-2 font-sans text-[11px] uppercase tracking-[0.24em] text-gold"
-                              >
-                                {k}
-                              </span>
-                            ))}
-                          </div>
                           <Link
                             href={`/services/${activeService.slug}`}
                             className="mt-7 inline-flex h-11 items-center gap-2 font-sans text-xs uppercase tracking-[0.24em] text-gold transition-colors duration-500 hover:text-offwhite"
                           >
-                            Explore Service →
+                            Explore Service -&gt;
                           </Link>
                         </motion.div>
                       </div>
@@ -274,12 +267,10 @@ export default function ServicesPreview() {
                   </AnimatePresence>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
 
-        {/* MOBILE — accordion, do not touch */}
         <div className="mt-12 lg:hidden">
           <Accordion type="single" collapsible defaultValue={services[0].slug}>
             {services.map((service) => (
@@ -289,7 +280,7 @@ export default function ServicesPreview() {
                 className="!rounded-none border-b border-charcoal-4 px-0 py-0"
               >
                 <AccordionTrigger className="!rounded-none !border-0 !bg-transparent px-0 py-5 font-serif text-2xl font-light text-offwhite transition-colors duration-300 data-[state=open]:text-gold hover:no-underline [&>svg]:text-muted">
-                  {service.title}
+                  {service.shortLabel}
                 </AccordionTrigger>
                 <AccordionContent className="px-0 !pt-0 !pb-6">
                   <div className="overflow-hidden rounded-[24px]">
@@ -304,28 +295,17 @@ export default function ServicesPreview() {
                   <p className="mt-5 font-sans text-sm leading-relaxed text-muted">
                     {service.description}
                   </p>
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    {service.keywords.map((k) => (
-                      <span
-                        key={k}
-                        className="rounded-full border border-gold/20 px-4 py-2 font-sans text-[11px] uppercase tracking-[0.24em] text-gold"
-                      >
-                        {k}
-                      </span>
-                    ))}
-                  </div>
                   <Link
                     href={`/services/${service.slug}`}
                     className="mt-6 inline-flex h-11 items-center font-sans text-xs uppercase tracking-[0.24em] text-gold"
                   >
-                    Explore Service →
+                    Explore Service -&gt;
                   </Link>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
-
       </div>
     </section>
   )
