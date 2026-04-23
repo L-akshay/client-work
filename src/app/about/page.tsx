@@ -66,17 +66,15 @@ const stats: {
 ]
 
 function usePrefersReducedMotion() {
-  const [reduced, setReduced] = React.useState(false)
-
-  React.useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-    setReduced(mq.matches)
-    const listener = (event: MediaQueryListEvent) => setReduced(event.matches)
-    mq.addEventListener("change", listener)
-    return () => mq.removeEventListener("change", listener)
-  }, [])
-
-  return reduced
+  return React.useSyncExternalStore(
+    (onStoreChange) => {
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+      mq.addEventListener("change", onStoreChange)
+      return () => mq.removeEventListener("change", onStoreChange)
+    },
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false
+  )
 }
 
 function RevealUp({
@@ -136,11 +134,7 @@ function CountUp({
   }, [motionValue])
 
   React.useEffect(() => {
-    if (reduced) {
-      setDisplay(value)
-      return
-    }
-    if (!isInView) return
+    if (reduced || !isInView) return
     const controls = animate(motionValue, value, {
       duration: 1.6,
       delay,
@@ -151,7 +145,7 @@ function CountUp({
 
   return (
     <span ref={ref} className={className}>
-      {display}
+      {reduced ? value : display}
       {suffix}
     </span>
   )
@@ -366,8 +360,8 @@ function MissionSection() {
           style={{ aspectRatio: "21 / 9" }}
         >
           <Image
-            src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=2000&q=80"
-            alt="NovaPR team collaborating"
+            src="/images/hero/case-studies.jpg"
+            alt="Workshop table during a planning session"
             fill
             sizes="(min-width: 1024px) 1200px, 100vw"
             className="object-cover"

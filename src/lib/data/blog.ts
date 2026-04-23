@@ -16,8 +16,7 @@ export const blogPosts: BlogPost[] = [
     title: "How modern brands build credibility before they buy attention",
     excerpt:
       "A look at why narrative clarity and third-party validation still outperform pure spend when trust is the real constraint.",
-    image:
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=80",
+    image: "/images/blog/modern-brands-credibility.jpg",
     content: `Credibility is not something you can buy outright. You can rent attention through paid media, but the moment the spend stops, so does the visibility. The brands that grow with staying power are the ones that invest in the infrastructure of trust before they scale the infrastructure of reach.
 
 That infrastructure starts with narrative clarity. Most brands try to communicate too much too early — features, pricing, company backstory, team credentials, and mission statements all competing for the same first impression. The result is a message that leaves the audience without a clear reason to care.
@@ -36,8 +35,7 @@ The practical takeaway: before increasing your media budget, audit your narrativ
       "What changes when social strategy is treated like a system, not a calendar",
     excerpt:
       "Better planning, stronger feedback loops, and content that compounds instead of starting from zero every week.",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80",
+    image: "/images/blog/social-strategy-as-system.jpg",
     content: `Most social media teams operate on a calendar. They plan content week by week, react to platform trends as they emerge, and measure performance post by post. This approach produces activity, but it rarely produces momentum.
 
 The difference between a social presence that compounds and one that flatlines is almost always structural. Brands that build audiences consistently treat social as a system — with repeatable content formats, clear audience feedback loops, and a publishing rhythm that creates expectation rather than surprise.
@@ -56,8 +54,7 @@ The calendar approach will always feel more urgent than it is. The system approa
       "Design cues that make a brand feel premium before anyone reads the copy",
     excerpt:
       "Typography, spacing, contrast, and composition signals shape perception faster than most teams realize.",
-    image:
-      "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80",
+    image: "/images/blog/design-cues-premium-brands.jpg",
     content: `Perception forms in milliseconds. Before a visitor reads your headline, before they register your value proposition, before they decide whether to scroll — they have already formed an impression based entirely on visual signals.
 
 Typography is the most powerful of these signals and the most consistently underestimated. The weight, spacing, and hierarchy of your type communicates authority or uncertainty, precision or casualness, before a single word is parsed. Brands that feel premium almost always use type with more restraint — fewer sizes, more consistent weights, and generous letter-spacing on labels and navigation.
@@ -75,8 +72,7 @@ None of this requires a large design budget. It requires decisions — made earl
     title: "Why brand and search teams should stop planning in isolation",
     excerpt:
       "Search captures demand, but demand is often created by stronger stories, better signals, and better brand memory.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    image: "/images/blog/brand-and-search-together.jpg",
     content: `Search is a demand-capture channel. It works by intercepting people who are already looking for something. What it cannot do on its own is create the demand it captures.
 
 That demand is created upstream — by brand exposure, word of mouth, media coverage, social presence, and the accumulated memory people carry about your category. When someone types your brand name into a search engine, it is almost never the first time they have encountered you. The search is the endpoint of a longer journey that started somewhere else.

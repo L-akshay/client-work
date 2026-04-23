@@ -7,6 +7,8 @@ export default function PageLoader() {
   const [visible, setVisible] = React.useState(false)
 
   React.useEffect(() => {
+    let shouldShowLoader = false
+
     try {
       const hasSeenLoader = window.sessionStorage.getItem("novapr-loader-seen")
 
@@ -14,15 +16,23 @@ export default function PageLoader() {
         return
       }
 
-      setVisible(true)
+      shouldShowLoader = true
       window.sessionStorage.setItem("novapr-loader-seen", "true")
     } catch {
-      setVisible(true)
+      shouldShowLoader = true
     }
 
-    const timer = window.setTimeout(() => setVisible(false), 1200)
+    if (!shouldShowLoader) {
+      return
+    }
 
-    return () => window.clearTimeout(timer)
+    const showTimer = window.setTimeout(() => setVisible(true), 0)
+    const hideTimer = window.setTimeout(() => setVisible(false), 1200)
+
+    return () => {
+      window.clearTimeout(showTimer)
+      window.clearTimeout(hideTimer)
+    }
   }, [])
 
   return (

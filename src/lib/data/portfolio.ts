@@ -42,8 +42,7 @@ export const portfolioItems: PortfolioItem[] = [
       "24 original US articles, 2.1 million estimated readers reached, and a 38% rise in inbound demo requests over 9 months.",
     excerpt:
       "A growing SaaS company needed earned authority in the United States before unfamiliar buyers would take the brand seriously against well-funded local competitors.",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&q=80",
+    image: "/images/case-studies/saas-market-entry.jpg",
     market: "United States",
     engagementDuration: "9 months",
     situation:
@@ -96,8 +95,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand sentiment moved from net negative to net neutral within 90 days, while positive stories claimed 4 of the top 10 Google results within 6 months.",
     excerpt:
       "After a recall damaged trust and search visibility, the challenge was to rebuild credibility without looking defensive or rushing back into promotion.",
-    image:
-      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1400&q=80",
+    image: "/images/case-studies/consumer-reputation-rebuild.jpg",
     market: "United Kingdom",
     engagementDuration: "6 months",
     situation:
@@ -153,8 +151,7 @@ export const portfolioItems: PortfolioItem[] = [
       "22 bylined articles, two recurring publication relationships, and a 340% combined LinkedIn audience increase across partner profiles.",
     excerpt:
       "A respected consultancy was winning on referrals but losing visibility in competitive pitches because larger firms owned the editorial conversation.",
-    image:
-      "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1400&q=80",
+    image: "/images/case-studies/professional-services-thought-leadership.jpg",
     market: "Canada and USA",
     engagementDuration: "12 months",
     situation:
@@ -209,8 +206,7 @@ export const portfolioItems: PortfolioItem[] = [
       "The Series A announcement was covered by 9 publications without press release distribution, followed by 3 organic mentions after the round closed.",
     excerpt:
       "The company needed institutional media credibility before investor conversations intensified, with a founder story journalists could tell without heavy company control.",
-    image:
-      "https://images.unsplash.com/photo-1559526324-593bc073d938?w=1400&q=80",
+    image: "/images/case-studies/fintech-investor-visibility.jpg",
     market: "Australia and UK",
     engagementDuration: "5 months",
     situation:
@@ -266,6 +262,5 @@ export const featuredCaseStudy = {
     "Four client engagements. Different industries, different goals, different starting points. The common thread is a clear PR strategy executed with editorial discipline and measurable outcomes.",
   excerpt:
     "The cases below document real client challenges, the strategic decisions we made, how we executed, and what changed as a result. We present them because the specifics are more credible than generalised claims.",
-  image:
-    "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80",
+  image: "/images/case-studies/featured-results.jpg",
 }

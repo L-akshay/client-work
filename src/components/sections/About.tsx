@@ -13,8 +13,8 @@ export default function About() {
         <FadeUp delay={0}>
           <div className="overflow-hidden rounded-lg border border-[#C9A84C]/30 bg-[#161616]">
             <Image
-              src="https://picsum.photos/600/700"
-              alt="NovaPR team collaboration"
+              src="/images/sections/about-consultation.jpg"
+              alt="Two people in a strategy consultation"
               width={600}
               height={700}
               className="h-full w-full object-cover"

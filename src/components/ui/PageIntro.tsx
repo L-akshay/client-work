@@ -8,8 +8,8 @@ export function PageIntro() {
 
   useEffect(() => {
     if (sessionStorage.getItem("nova_intro_seen")) {
-      setShow(false)
-      return
+      const t = setTimeout(() => setShow(false), 0)
+      return () => clearTimeout(t)
     }
     const t = setTimeout(() => {
       setShow(false)

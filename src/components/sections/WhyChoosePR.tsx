@@ -97,8 +97,8 @@ export default function WhyChoosePR() {
           <div className="relative">
             <div className="group relative hidden aspect-[5/4] overflow-hidden rounded-[32px] border border-[#C9A84C]/15 shadow-[0_24px_70px_rgba(15,15,15,0.18)] sm:block xl:aspect-[11/10]">
               <Image
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80"
-                alt="Team presentation for communications planning"
+                src="/images/sections/why-choose-pr.jpg"
+                alt="Audience at a media event"
                 width={900}
                 height={1040}
                 className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-[1.04] group-active:scale-[1.04]"

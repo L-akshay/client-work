@@ -51,10 +51,8 @@ export const services: Service[] = [
       "We design high-trust communications programs that connect leadership, business milestones, and media opportunities into one clear public story.",
     longDescription:
       "Our PR team works across corporate communications, founder visibility, media relations, and sensitive reputation moments. We build the story architecture first, then activate the right mix of journalists, publications, speaking moments, and narratives that keep your brand in the conversation for the right reasons.",
-    image:
-      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&q=80",
+    image: "/images/services/public-relations.jpg",
+    heroImage: "/images/services/public-relations-hero.jpg",
     keywords: [
       "Media Relations",
       "Corporate Communications",
@@ -120,10 +118,8 @@ export const services: Service[] = [
       "Our social and digital programs are built to keep brands culturally present while staying grounded in performance and reporting.",
     longDescription:
       "From content calendars and paid amplification to campaign storytelling and reporting frameworks, we create digital ecosystems that feel premium and perform consistently. Every touchpoint is designed to strengthen brand memory, audience engagement, and measurable growth.",
-    image:
-      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1600&q=80",
+    image: "/images/services/social-digital-marketing.jpg",
+    heroImage: "/images/services/social-digital-marketing-hero.jpg",
     keywords: [
       "Social Strategy",
       "Paid Growth",
@@ -189,10 +185,8 @@ export const services: Service[] = [
       "We match brands with creators whose audience trust can drive both visibility and action, not just vanity numbers.",
     longDescription:
       "Influencer work performs best when the partnership feels believable. We combine creator discovery, narrative planning, and campaign operations to make every collaboration feel aligned with the brand while still native to the creator's world. The outcome is stronger recall, stronger trust, and stronger downstream performance.",
-    image:
-      "https://images.unsplash.com/photo-1557838923-2985c318be48?w=1200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80",
+    image: "/images/services/influencer-marketing.jpg",
+    heroImage: "/images/services/influencer-marketing-hero.jpg",
     keywords: [
       "Creator Strategy",
       "Partnership Management",
@@ -258,10 +252,8 @@ export const services: Service[] = [
       "Our creative studio shapes the visual and verbal expression that helps brands look composed, distinctive, and campaign-ready.",
     longDescription:
       "Whether you need a sharper brand identity, campaign art direction, launch visuals, or social-first creative, we build design systems that carry authority across channels. The work is rooted in strategy, then expressed through typography, composition, language, and assets that feel deliberately premium.",
-    image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1600&q=80",
+    image: "/images/services/creative-studio.jpg",
+    heroImage: "/images/services/creative-studio-hero.jpg",
     keywords: [
       "Brand Identity",
       "Campaign Design",
@@ -327,10 +319,8 @@ export const services: Service[] = [
       "Search is one of the highest-leverage growth channels when brand messaging, content, and technical performance work together.",
     longDescription:
       "Our search programs look beyond rankings alone. We structure content around intent, build topical authority, and strengthen site fundamentals so brands become easier to discover and easier to trust. The result is demand capture that keeps improving long after launch.",
-    image:
-      "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80",
+    image: "/images/services/seo-search-strategy.jpg",
+    heroImage: "/images/services/seo-search-strategy-hero.jpg",
     keywords: [
       "Technical SEO",
       "Search Intent",

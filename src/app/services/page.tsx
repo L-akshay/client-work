@@ -8,7 +8,7 @@ export default function ServicesPage() {
       <PageHero
         title="Our Services"
         description="Five integrated practice areas designed to strengthen reputation, visibility, and growth without losing brand consistency."
-        image="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1800&q=80"
+        image="/images/hero/services.jpg"
       />
       <ServicesSection />
       <ClosingCta

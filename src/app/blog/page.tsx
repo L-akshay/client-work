@@ -12,7 +12,7 @@ export default function BlogPage() {
       <PageHero
         title="Blog"
         description="Perspectives on communications, growth, creative direction, and the systems that help modern brands stay visible."
-        image="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1800&q=80"
+        image="/images/hero/blog.jpg"
       />
       <section className="px-5 py-18 lg:px-16 lg:py-24">
         <div className="mx-auto max-w-7xl">

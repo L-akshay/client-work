@@ -36,8 +36,8 @@ export default function Hero() {
     <section className="relative flex min-h-screen items-center overflow-hidden px-5 pt-32 pb-16 lg:px-16">
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1800&q=80"
-          alt="Editorial office setting"
+          src="/images/hero/agency-office.jpg"
+          alt="Media interview in a studio setting"
           fill
           priority
           sizes="100vw"

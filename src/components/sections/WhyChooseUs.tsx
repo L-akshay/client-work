@@ -74,8 +74,8 @@ export default function WhyChooseUs() {
         <FadeUp delay={0}>
           <div className="group relative overflow-hidden rounded-[32px] border border-[#C9A84C]/15 shadow-[0_28px_90px_rgba(15,15,15,0.22)]">
             <Image
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80"
-              alt="NovaPR team collaborating in the office"
+              src="/images/sections/why-choose-us.jpg"
+              alt="Campaign planning notes during a workshop"
               width={900}
               height={1040}
               className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-[1.05]"
