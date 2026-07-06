@@ -1,7 +1,10 @@
+"use client"
+
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { FolderKanban, LogOut } from "lucide-react"
 
-import { signOut } from "@/app/login/actions"
+import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import type { Profile } from "@/lib/supabase/types"
 
@@ -16,6 +19,14 @@ export default function DashboardShell({
   eyebrow: string
   children: React.ReactNode
 }) {
+  const router = useRouter()
+
+  async function handleSignOut() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    router.replace("/login")
+  }
+
   return (
     <section className="px-5 py-32 lg:px-16">
       <div className="mx-auto max-w-7xl">
@@ -40,16 +51,15 @@ export default function DashboardShell({
               <FolderKanban className="size-4" />
               Dashboard
             </Link>
-            <form action={signOut}>
-              <Button
-                type="submit"
-                variant="outline"
-                className="min-h-11 rounded-full border-[#2A2A2A] bg-[#111111] px-5 font-ui text-[11px] uppercase tracking-[0.22em] text-[#F5F0E8]"
-              >
-                <LogOut className="size-4" />
-                Sign Out
-              </Button>
-            </form>
+            <Button
+              type="button"
+              onClick={handleSignOut}
+              variant="outline"
+              className="min-h-11 rounded-full border-[#2A2A2A] bg-[#111111] px-5 font-ui text-[11px] uppercase tracking-[0.22em] text-[#F5F0E8]"
+            >
+              <LogOut className="size-4" />
+              Sign Out
+            </Button>
           </div>
         </div>
 

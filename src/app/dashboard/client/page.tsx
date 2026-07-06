@@ -1,43 +1,78 @@
-import { redirect } from "next/navigation"
+"use client"
+
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { CalendarDays, CheckCircle2 } from "lucide-react"
 
 import DashboardShell from "@/app/dashboard/Shell"
 import SupabaseSetupNotice from "@/components/portal/SupabaseSetupNotice"
+import { createClient } from "@/lib/supabase/client"
 import { hasSupabaseEnv } from "@/lib/supabase/config"
-import { createClient } from "@/lib/supabase/server"
 import type { Profile, Project, ProjectUpdate } from "@/lib/supabase/types"
 
 type ProjectWithUpdates = Project & {
   project_updates: ProjectUpdate[]
 }
 
-export default async function ClientDashboardPage() {
+export default function ClientDashboardPage() {
+  const router = useRouter()
+  const [loading, setLoading] = useState(true)
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [projects, setProjects] = useState<ProjectWithUpdates[]>([])
+
+  useEffect(() => {
+    if (!hasSupabaseEnv()) {
+      setLoading(false)
+      return
+    }
+
+    const supabase = createClient()
+
+    async function load() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+
+      if (!user) {
+        router.replace("/login")
+        return
+      }
+
+      const { data: profileData } = await supabase
+        .from("profiles")
+        .select("id,email,full_name,company_name,role")
+        .eq("id", user.id)
+        .single<Profile>()
+
+      const { data: projectData } = await supabase
+        .from("projects")
+        .select(
+          "id,name,slug,client_name,status,summary,start_date,due_date,budget,project_updates(id,project_id,title,body,status,published_at)"
+        )
+        .order("created_at", { ascending: false })
+        .returns<ProjectWithUpdates[]>()
+
+      setProfile(profileData ?? null)
+      setProjects(projectData ?? [])
+      setLoading(false)
+    }
+
+    load()
+  }, [router])
+
   if (!hasSupabaseEnv()) {
     return <SupabaseSetupNotice />
   }
 
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  if (!user) {
-    redirect("/login")
-  }
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("id,email,full_name,company_name,role")
-    .eq("id", user.id)
-    .single<Profile>()
-
-  const { data: projects } = await supabase
-    .from("projects")
-    .select(
-      "id,name,slug,client_name,status,summary,start_date,due_date,budget,project_updates(id,project_id,title,body,status,published_at)"
+  if (loading) {
+    return (
+      <section className="flex min-h-[calc(100vh-92px)] items-center justify-center px-5 py-32 lg:px-16">
+        <p className="font-ui text-[11px] uppercase tracking-[0.34em] text-[#C9A84C]">
+          Loading workspace...
+        </p>
+      </section>
     )
-    .order("created_at", { ascending: false })
-    .returns<ProjectWithUpdates[]>()
+  }
 
   return (
     <DashboardShell
@@ -46,7 +81,7 @@ export default async function ClientDashboardPage() {
       title="Your project workspace"
     >
       <div className="grid gap-6 lg:grid-cols-3">
-        {(projects ?? []).map((project) => (
+        {projects.map((project) => (
           <article
             key={project.id}
             className="flex min-h-[24rem] flex-col rounded-[28px] border border-[#C9A84C]/15 bg-[#161616] p-7"
@@ -118,7 +153,7 @@ export default async function ClientDashboardPage() {
         ))}
       </div>
 
-      {!projects?.length ? (
+      {!projects.length ? (
         <div className="rounded-[28px] border border-[#C9A84C]/15 bg-[#161616] p-8">
           <h2 className="font-serif text-3xl font-light text-[#F5F0E8]">
             No assigned projects yet.

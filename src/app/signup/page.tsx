@@ -1,43 +1,81 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { ArrowRight, UserPlus } from "lucide-react"
 
-import { signUp } from "@/app/login/actions"
+import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import SupabaseSetupNotice from "@/components/portal/SupabaseSetupNotice"
 import { hasSupabaseEnv } from "@/lib/supabase/config"
-import { createClient } from "@/lib/supabase/server"
 
-type SignupPageProps = {
-  searchParams: Promise<{
-    error?: string
-  }>
-}
+export default function SignupPage() {
+  const router = useRouter()
+  const [error, setError] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
 
-export default async function SignupPage({ searchParams }: SignupPageProps) {
+  useEffect(() => {
+    if (!hasSupabaseEnv()) {
+      return
+    }
+
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        router.replace("/dashboard")
+      }
+    })
+  }, [router])
+
   if (!hasSupabaseEnv()) {
     return <SupabaseSetupNotice />
   }
 
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  const params = await searchParams
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setError(null)
 
-  if (user) {
-    redirect("/dashboard")
+    const formData = new FormData(event.currentTarget)
+    const fullName = String(formData.get("full_name") ?? "").trim()
+    const companyName = String(formData.get("company_name") ?? "").trim()
+    const email = String(formData.get("email") ?? "").trim()
+    const password = String(formData.get("password") ?? "")
+
+    if (!fullName || !email || !password) {
+      setError("Name, email, and password are required.")
+      return
+    }
+
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters.")
+      return
+    }
+
+    setSubmitting(true)
+    const supabase = createClient()
+    const { error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+          company_name: companyName || null,
+        },
+      },
+    })
+
+    if (signUpError) {
+      setError(
+        "We could not create that account. Try another email or password."
+      )
+      setSubmitting(false)
+      return
+    }
+
+    router.replace("/login?notice=created")
   }
-
-  const error =
-    params.error === "missing"
-      ? "Name, email, and password are required."
-      : params.error === "password"
-        ? "Password must be at least 8 characters."
-        : params.error === "invalid"
-          ? "We could not create that account. Try another email or password."
-          : null
 
   return (
     <section className="relative min-h-[calc(100vh-92px)] overflow-hidden px-5 pt-36 pb-20 lg:px-16 lg:pt-40">
@@ -74,7 +112,7 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
             </span>
           </div>
 
-          <form action={signUp} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="font-ui text-[11px] uppercase tracking-[0.24em] text-[#C9A84C]">
                 Full Name
@@ -138,9 +176,10 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
 
             <Button
               type="submit"
-              className="min-h-13 w-full rounded-none bg-[#C9A84C] font-ui text-[11px] uppercase tracking-[0.26em] text-[#0F0F0F] hover:bg-[#E0C061]"
+              disabled={submitting}
+              className="min-h-13 w-full rounded-none bg-[#C9A84C] font-ui text-[11px] uppercase tracking-[0.26em] text-[#0F0F0F] hover:bg-[#E0C061] disabled:opacity-60"
             >
-              Create Account
+              {submitting ? "Creating..." : "Create Account"}
               <ArrowRight className="ml-2 size-4" />
             </Button>
           </form>

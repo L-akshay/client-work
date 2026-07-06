@@ -1,46 +1,76 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { ArrowRight, BadgeCheck, LockKeyhole, ShieldCheck } from "lucide-react"
 
-import { signIn } from "@/app/login/actions"
+import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import SupabaseSetupNotice from "@/components/portal/SupabaseSetupNotice"
 import { hasSupabaseEnv } from "@/lib/supabase/config"
-import { createClient } from "@/lib/supabase/server"
 
-type LoginPageProps = {
-  searchParams: Promise<{
-    error?: string
-    notice?: string
-  }>
-}
+export default function LoginPage() {
+  const router = useRouter()
+  const [error, setError] = useState<string | null>(null)
+  const [notice, setNotice] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
 
-export default async function LoginPage({ searchParams }: LoginPageProps) {
+  useEffect(() => {
+    if (!hasSupabaseEnv()) {
+      return
+    }
+
+    const params = new URLSearchParams(window.location.search)
+    if (params.get("notice") === "created") {
+      setNotice(
+        "Account created. Sign in after confirming your email if confirmation is enabled."
+      )
+    }
+
+    // If already signed in, skip straight to the dashboard.
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        router.replace("/dashboard")
+      }
+    })
+  }, [router])
+
   if (!hasSupabaseEnv()) {
     return <SupabaseSetupNotice />
   }
 
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  const params = await searchParams
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setError(null)
+    setNotice(null)
 
-  if (user) {
-    redirect("/dashboard")
+    const formData = new FormData(event.currentTarget)
+    const email = String(formData.get("email") ?? "").trim()
+    const password = String(formData.get("password") ?? "")
+
+    if (!email || !password) {
+      setError("Email and password are required.")
+      return
+    }
+
+    setSubmitting(true)
+    const supabase = createClient()
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (signInError) {
+      setError("Those login details did not work.")
+      setSubmitting(false)
+      return
+    }
+
+    router.replace("/dashboard")
   }
-
-  const error =
-    params.error === "missing"
-      ? "Email and password are required."
-      : params.error === "invalid"
-        ? "Those login details did not work."
-        : null
-  const notice =
-    params.notice === "created"
-      ? "Account created. Sign in after confirming your email if confirmation is enabled."
-      : null
 
   return (
     <section className="relative min-h-[calc(100vh-92px)] overflow-hidden px-5 pt-36 pb-20 lg:px-16 lg:pt-40">
@@ -90,7 +120,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             </span>
           </div>
 
-          <form action={signIn} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="font-ui text-[11px] uppercase tracking-[0.24em] text-[#C9A84C]">
                 Email
@@ -133,9 +163,10 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
             <Button
               type="submit"
-              className="min-h-13 w-full rounded-none bg-[#C9A84C] font-ui text-[11px] uppercase tracking-[0.26em] text-[#0F0F0F] hover:bg-[#E0C061]"
+              disabled={submitting}
+              className="min-h-13 w-full rounded-none bg-[#C9A84C] font-ui text-[11px] uppercase tracking-[0.26em] text-[#0F0F0F] hover:bg-[#E0C061] disabled:opacity-60"
             >
-              Sign In
+              {submitting ? "Signing In..." : "Sign In"}
               <ArrowRight className="ml-2 size-4" />
             </Button>
           </form>
