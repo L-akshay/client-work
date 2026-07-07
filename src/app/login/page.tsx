@@ -64,7 +64,7 @@ export default function LoginPage() {
     })
 
     if (signInError) {
-      setError("Those login details did not work.")
+      setError(signInError.message || "Those login details did not work.")
       setSubmitting(false)
       return
     }

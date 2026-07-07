@@ -68,7 +68,8 @@ export default function SignupPage() {
 
     if (signUpError) {
       setError(
-        "We could not create that account. Try another email or password."
+        signUpError.message ||
+          "We could not create that account. Try another email or password."
       )
       setSubmitting(false)
       return

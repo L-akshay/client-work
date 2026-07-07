@@ -57,6 +57,7 @@ lerna-debug.log*
 
 # Deployment
 .vercel/
+.firebase/
 
 # Editors and IDEs
 .vscode/

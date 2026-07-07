@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "prforbrand",
+    "site": "pr-website",
     "public": "out",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
