@@ -1,7 +1,4 @@
-"use client"
-
 import Image from "next/image"
-import { motion } from "framer-motion"
 import FadeUp from "@/components/ui/FadeUp"
 import SectionLabel from "@/components/ui/SectionLabel"
 import { heroStats } from "@/lib/data/stats"
@@ -10,19 +7,14 @@ import { site } from "@/lib/site-content"
 function StatCard({
   value,
   label,
-  delay,
   className,
 }: {
   value: string
   label: string
-  delay: number
   className?: string
 }) {
   return (
-    <motion.div
-      initial={false}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
+    <div
       className={`rounded-[18px] border border-[#C9A84C]/20 bg-[#161616]/90 px-5 py-4 text-center shadow-[0_18px_40px_rgba(15,15,15,0.18)] backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-1 hover:border-[#C9A84C]/35 sm:rounded-[20px] sm:px-6 sm:py-5 sm:text-left ${className ?? ""}`}
     >
       <p className="font-serif text-[clamp(28px,7vw,36px)] font-light text-[#C9A84C]">
@@ -31,7 +23,7 @@ function StatCard({
       <p className="mt-1 font-sans text-[10px] uppercase tracking-[0.18em] text-[#888880] sm:text-xs sm:tracking-[0.2em]">
         {label}
       </p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -49,16 +41,9 @@ export default function WhyChoosePR() {
           />
 
           <div className="mt-10">
-            {content.checklist.map((item, index) => (
-              <motion.div
+            {content.checklist.map((item) => (
+              <div
                 key={item.number}
-                initial={false}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.06,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
                 className="group relative flex cursor-default items-center gap-5 border-b border-[#2a2a2a] py-[14px] last:border-b-0"
               >
                 <span className="pointer-events-none absolute inset-0 rounded-[8px] bg-[#C9A84C]/[0.04] opacity-0 transition-opacity duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:opacity-100 group-active:opacity-100" />
@@ -75,7 +60,7 @@ export default function WhyChoosePR() {
                 <span className="flex w-6 shrink-0 justify-end overflow-hidden">
                   <span className="h-px w-0 translate-x-2 bg-[#C9A84C] opacity-0 transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:w-6 group-hover:translate-x-0 group-hover:opacity-100 group-active:w-6 group-active:translate-x-0 group-active:opacity-100" />
                 </span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </FadeUp>
@@ -98,7 +83,6 @@ export default function WhyChoosePR() {
                   <StatCard
                     value={heroStats[0]?.value ?? ""}
                     label={heroStats[0]?.label ?? ""}
-                    delay={0.4}
                     className="w-[240px] xl:w-[260px]"
                   />
                 </div>
@@ -107,13 +91,11 @@ export default function WhyChoosePR() {
                   <StatCard
                     value={heroStats[2]?.value ?? ""}
                     label={heroStats[2]?.label ?? ""}
-                    delay={0.5}
                     className="w-[220px] xl:w-[240px]"
                   />
                   <StatCard
                     value={heroStats[1]?.value ?? ""}
                     label={heroStats[1]?.label ?? ""}
-                    delay={0.6}
                     className="w-[220px] xl:w-[240px]"
                   />
                 </div>
@@ -124,19 +106,16 @@ export default function WhyChoosePR() {
               <StatCard
                 value={heroStats[0]?.value ?? ""}
                 label={heroStats[0]?.label ?? ""}
-                delay={0.4}
                 className="w-full"
               />
               <StatCard
                 value={heroStats[2]?.value ?? ""}
                 label={heroStats[2]?.label ?? ""}
-                delay={0.5}
                 className="w-full"
               />
               <StatCard
                 value={heroStats[1]?.value ?? ""}
                 label={heroStats[1]?.label ?? ""}
-                delay={0.6}
                 className="w-full sm:col-span-2 sm:max-w-[calc(50%-0.375rem)]"
               />
             </div>

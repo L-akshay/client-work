@@ -137,6 +137,26 @@ body {
   animation: marquee-right 28s linear infinite;
 }
 
+@keyframes testimonial-marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.333%); }
+}
+
+@keyframes testimonial-marquee-right {
+  from { transform: translateX(-33.333%); }
+  to { transform: translateX(0); }
+}
+
+.animate-testimonial-marquee-left {
+  animation: testimonial-marquee-left 16s linear infinite;
+  will-change: transform;
+}
+
+.animate-testimonial-marquee-right {
+  animation: testimonial-marquee-right 16s linear infinite;
+  will-change: transform;
+}
+
 @keyframes float-orb {
   0%, 100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -251,6 +271,36 @@ body {
   animation: word-rotate-in 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) both;
 }
 
+@keyframes hero-image-drift {
+  0%, 100% {
+    transform: translate3d(-1.2%, -0.8%, 0) scale(1.06);
+  }
+  50% {
+    transform: translate3d(1.2%, 0.8%, 0) scale(1.1);
+  }
+}
+
+.animate-hero-image-drift {
+  animation: hero-image-drift 28s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes hero-glow-drift {
+  0%, 100% {
+    transform: translate3d(-2%, 0, 0) scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translate3d(2%, -1.5%, 0) scale(1.04);
+    opacity: 1;
+  }
+}
+
+.animate-hero-glow-drift {
+  animation: hero-glow-drift 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
 @keyframes service-media-in {
   from {
     opacity: 0;
@@ -294,6 +344,45 @@ body {
   animation: service-bar-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) both;
 }
 
+@media (max-width: 767px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-hero-image-drift,
+  .animate-hero-glow-drift {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .animate-float-orb,
+  .animate-float-orb-reverse,
+  .animate-project-drift,
+  .animate-projects-closing-drift {
+    animation-duration: 24s;
+  }
+
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation-duration: 52s;
+  }
+
+  .animate-testimonial-marquee-left,
+  .animate-testimonial-marquee-right {
+    animation-duration: 18s;
+  }
+
+  .animate-fade-up-reveal {
+    animation-duration: 0.42s;
+  }
+
+  .animate-page-fade-in {
+    animation-duration: 0.18s;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-left,
   .animate-marquee-right,
@@ -302,8 +391,12 @@ body {
   .animate-project-drift,
   .animate-gold-dot-pulse,
   .animate-projects-closing-drift,
+  .animate-testimonial-marquee-left,
+  .animate-testimonial-marquee-right,
   .animate-page-fade-in,
-  .animate-fade-up-reveal {
+  .animate-fade-up-reveal,
+  .animate-hero-image-drift,
+  .animate-hero-glow-drift {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

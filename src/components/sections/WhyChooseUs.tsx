@@ -1,8 +1,4 @@
-"use client"
-
-import * as React from "react"
 import Image from "next/image"
-import { animate, useMotionValue } from "framer-motion"
 
 import FadeUp from "@/components/ui/FadeUp"
 import SectionLabel from "@/components/ui/SectionLabel"
@@ -13,39 +9,14 @@ function Stat({
   value,
   label,
   description,
-  delay,
 }: {
   value: number
   label: string
   description: string
-  delay: number
 }) {
-  const motionValue = useMotionValue(0)
-  // Seed with the real value so the number is correct even if the count-up
-  // animation never runs (production framer mount animations can be deferred).
-  const [display, setDisplay] = React.useState(value)
-
-  React.useEffect(() => {
-    const unsubscribe = motionValue.on("change", (latest) => {
-      setDisplay(Math.round(latest))
-    })
-
-    return unsubscribe
-  }, [motionValue])
-
-  React.useEffect(() => {
-    const controls = animate(motionValue, value, {
-      duration: 0.8,
-      delay,
-      ease: [0.25, 0.1, 0.25, 1],
-    })
-
-    return () => controls.stop()
-  }, [delay, motionValue, value])
-
   return (
     <div className="rounded-[24px] border border-[#C9A84C]/10 bg-[#0F0F0F] p-6 shadow-[0_18px_50px_rgba(15,15,15,0.18)] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-1 hover:border-[#C9A84C]/20">
-      <p className="font-serif text-5xl font-light text-[#C9A84C]">{display}%</p>
+      <p className="font-serif text-5xl font-light text-[#C9A84C]">{value}%</p>
       <p className="mt-3 font-ui text-[11px] uppercase tracking-[0.28em] text-[#F5F0E8]">
         {label}
       </p>
@@ -88,13 +59,12 @@ export default function WhyChooseUs() {
               description={content.description}
             />
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
-              {performanceStats.map((stat, index) => (
+              {performanceStats.map((stat) => (
                 <Stat
                   key={stat.label}
                   value={stat.value}
                   label={stat.label}
                   description={stat.description}
-                  delay={Math.min(index * 0.1, 0.4)}
                 />
               ))}
             </div>

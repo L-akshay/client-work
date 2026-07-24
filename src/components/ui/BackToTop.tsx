@@ -5,16 +5,63 @@ import { AnimatePresence, motion } from "framer-motion"
 import { ChevronUp } from "lucide-react"
 
 export default function BackToTop() {
+  const [enabled, setEnabled] = React.useState(false)
   const [visible, setVisible] = React.useState(false)
+  const visibleRef = React.useRef(false)
+  const frameRef = React.useRef<number | null>(null)
 
   React.useEffect(() => {
-    const handleScroll = () => setVisible(window.scrollY > 400)
+    const mediaQuery = window.matchMedia("(min-width: 768px)")
+    const updateEnabled = () => {
+      const shouldEnable = mediaQuery.matches
+      setEnabled(shouldEnable)
+      if (!shouldEnable) {
+        visibleRef.current = false
+        setVisible(false)
+        if (frameRef.current !== null) {
+          window.cancelAnimationFrame(frameRef.current)
+          frameRef.current = null
+        }
+      }
+    }
 
-    handleScroll()
+    updateEnabled()
+    mediaQuery.addEventListener("change", updateEnabled)
+
+    return () => mediaQuery.removeEventListener("change", updateEnabled)
+  }, [])
+
+  React.useEffect(() => {
+    if (!enabled) return
+
+    const updateVisible = () => {
+      frameRef.current = null
+      const nextVisible = window.scrollY > 400
+      if (nextVisible !== visibleRef.current) {
+        visibleRef.current = nextVisible
+        setVisible(nextVisible)
+      }
+    }
+
+    const handleScroll = () => {
+      if (frameRef.current !== null) return
+      frameRef.current = window.requestAnimationFrame(updateVisible)
+    }
+
+    updateVisible()
     window.addEventListener("scroll", handleScroll, { passive: true })
 
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current)
+      }
+    }
+  }, [enabled])
+
+  if (!enabled) {
+    return null
+  }
 
   return (
     <AnimatePresence>

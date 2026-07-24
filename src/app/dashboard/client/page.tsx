@@ -89,7 +89,7 @@ export default function ClientDashboardPage() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="font-ui text-[10px] uppercase tracking-[0.26em] text-[#C9A84C]">
-                  {project.client_name || "NovaPR Project"}
+                  {project.client_name || "prforbrand Project"}
                 </p>
                 <h2 className="mt-4 font-serif text-3xl font-light leading-[1.05] text-[#F5F0E8]">
                   {project.name}
@@ -159,7 +159,7 @@ export default function ClientDashboardPage() {
             No assigned projects yet.
           </h2>
           <p className="mt-3 font-ui text-sm leading-relaxed text-[#888880]">
-            Once the NovaPR team assigns a project to your account, it will
+            Once the prforbrand team assigns a project to your account, it will
             appear here with status and updates.
           </p>
         </div>

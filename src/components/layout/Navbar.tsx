@@ -48,6 +48,20 @@ const itemVariants = {
   },
 }
 
+const desktopNavigationLinks = navigationLinks
+  .filter((link) => link.href !== "/")
+  .map((link) => ({
+    ...link,
+    desktopLabel:
+      link.label === "About Us"
+        ? "About"
+        : link.label === "Case Studies"
+          ? "Cases"
+          : link.label === "Contact Us"
+            ? "Contact"
+            : link.label,
+  }))
+
 export default function Navbar() {
   const navigation = site.navigation
   const pathname = usePathname()
@@ -55,14 +69,33 @@ export default function Navbar() {
   const [sheetOpen, setSheetOpen] = React.useState(false)
   const [servicesOpen, setServicesOpen] = React.useState(false)
   const closeTimer = React.useRef<number | null>(null)
+  const scrolledRef = React.useRef(false)
+  const scrollFrameRef = React.useRef<number | null>(null)
 
   React.useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24)
+    const updateScrolled = () => {
+      scrollFrameRef.current = null
+      const nextScrolled = window.scrollY > 24
+      if (nextScrolled !== scrolledRef.current) {
+        scrolledRef.current = nextScrolled
+        setScrolled(nextScrolled)
+      }
+    }
 
-    handleScroll()
+    const handleScroll = () => {
+      if (scrollFrameRef.current !== null) return
+      scrollFrameRef.current = window.requestAnimationFrame(updateScrolled)
+    }
+
+    updateScrolled()
     window.addEventListener("scroll", handleScroll, { passive: true })
 
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (scrollFrameRef.current !== null) {
+        window.cancelAnimationFrame(scrollFrameRef.current)
+      }
+    }
   }, [])
 
   React.useEffect(() => {
@@ -87,22 +120,22 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-[75] w-full border-b border-transparent transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
-        scrolled && "border-[#C9A84C]/15 bg-[#0F0F0F]/92 shadow-[0_18px_60px_rgba(15,15,15,0.32)] backdrop-blur-xl"
+        "fixed top-0 z-[75] w-full border-b border-transparent transition-[background-color,border-color,box-shadow] duration-300 ease-out",
+        scrolled && "border-[#C9A84C]/15 bg-[#0F0F0F]/95 shadow-[0_18px_48px_rgba(15,15,15,0.28)]"
       )}
     >
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent opacity-70" />
-      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-5 lg:px-16">
+      <div className="mx-auto grid h-[88px] max-w-[1560px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:grid-cols-[auto_1fr_auto] lg:gap-8 lg:px-10 xl:h-24 xl:px-14 2xl:px-16">
         <Link
           href="/"
-          className="font-serif text-3xl font-light tracking-[0.01em] text-[#F5F0E8]"
+          className="shrink-0 whitespace-nowrap font-serif text-[32px] font-light tracking-[0.01em] text-[#F5F0E8] xl:text-4xl"
         >
           {navigation.brandPrefix}<span className="text-[#C9A84C]">{navigation.brandAccent}</span>
         </Link>
 
-        <nav className="hidden lg:block">
-          <ul className="flex items-center gap-7">
-            {navigationLinks.map((link) => (
+        <nav className="hidden min-w-0 justify-center lg:flex">
+          <ul className="flex min-w-0 items-center justify-center gap-6 xl:gap-8 2xl:gap-10">
+            {desktopNavigationLinks.map((link) => (
               <li
                 key={link.label}
                 className="relative"
@@ -114,11 +147,11 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       className={cn(
-                        "group relative flex min-h-11 items-center gap-2 font-ui text-[11px] uppercase tracking-[0.24em] text-[#888880] transition-colors duration-700 hover:text-[#C9A84C] after:absolute after:bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#C9A84C] after:transition-all after:duration-500 after:ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:after:w-full",
+                        "group relative flex min-h-11 items-center gap-2 whitespace-nowrap font-ui text-[11px] uppercase tracking-[0.2em] text-[#888880] transition-colors duration-300 hover:text-[#C9A84C] after:absolute after:bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#C9A84C] after:transition-[width] after:duration-300 after:ease-out hover:after:w-full",
                         pathname.startsWith("/services") && "text-[#C9A84C]"
                       )}
                     >
-                      {link.label}
+                      {link.desktopLabel}
                       <ChevronDown className="size-4" />
                     </Link>
 
@@ -129,8 +162,8 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 12 }}
                           transition={{
-                            duration: 0.7,
-                            ease: [0.25, 0.1, 0.25, 1],
+                            duration: 0.22,
+                            ease: "easeOut",
                           }}
                           className="absolute left-1/2 top-full z-50 w-[360px] -translate-x-1/2 pt-6"
                           onMouseEnter={openServices}
@@ -145,7 +178,7 @@ export default function Navbar() {
                                 <Link
                                   key={service.href}
                                   href={service.href}
-                                  className="block rounded-2xl border border-transparent px-4 py-3 font-ui text-sm text-[#888880] transition-all duration-700 hover:border-[#C9A84C]/15 hover:bg-[#0F0F0F] hover:text-[#F5F0E8]"
+                                  className="block rounded-2xl border border-transparent px-4 py-3 font-ui text-sm text-[#888880] transition-colors duration-300 hover:border-[#C9A84C]/15 hover:bg-[#0F0F0F] hover:text-[#F5F0E8]"
                                 >
                                   {service.label}
                                 </Link>
@@ -160,11 +193,11 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "relative font-ui text-[11px] uppercase tracking-[0.24em] text-[#888880] transition-colors duration-700 hover:text-[#C9A84C] after:absolute after:bottom-[-10px] after:left-0 after:h-px after:w-0 after:bg-[#C9A84C] after:transition-all after:duration-500 after:ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:after:w-full",
+                      "relative whitespace-nowrap font-ui text-[11px] uppercase tracking-[0.2em] text-[#888880] transition-colors duration-300 hover:text-[#C9A84C] after:absolute after:bottom-[-10px] after:left-0 after:h-px after:w-0 after:bg-[#C9A84C] after:transition-[width] after:duration-300 after:ease-out hover:after:w-full",
                       pathname === link.href && "text-[#C9A84C]"
                     )}
                   >
-                    {link.label}
+                    {link.desktopLabel}
                   </Link>
                 )}
               </li>
@@ -172,17 +205,17 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
           <Link
             href={navigation.primaryCta.href}
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#C9A84C] px-6 py-3 font-ui text-[11px] uppercase tracking-[0.28em] text-[#C9A84C] transition-all duration-700 hover:-translate-y-0.5 hover:bg-[#C9A84C] hover:text-[#0F0F0F] hover:shadow-[0_14px_30px_rgba(201,168,76,0.18)]"
+            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border border-[#C9A84C] px-5 py-3 font-ui text-[10px] uppercase tracking-[0.2em] text-[#C9A84C] transition-[background-color,color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-[#C9A84C] hover:text-[#0F0F0F] hover:shadow-[0_14px_30px_rgba(201,168,76,0.18)] xl:px-6 xl:text-[11px] xl:tracking-[0.24em]"
           >
             {navigation.primaryCta.label}
           </Link>
           <Link
             href="/login"
             className={cn(
-              "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#2A2A2A] px-5 py-3 font-ui text-[11px] uppercase tracking-[0.24em] text-[#888880] transition-all duration-700 hover:border-[#C9A84C] hover:text-[#C9A84C]",
+              "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#2A2A2A] px-4 py-3 font-ui text-[10px] uppercase tracking-[0.18em] text-[#888880] transition-colors duration-300 hover:border-[#C9A84C] hover:text-[#C9A84C] xl:px-5 xl:text-[11px] xl:tracking-[0.22em]",
               pathname.startsWith("/login") ||
                 pathname.startsWith("/signup") ||
                 pathname.startsWith("/dashboard")
@@ -199,7 +232,7 @@ export default function Navbar() {
           variant="ghost"
           size="icon"
           data-nav-toggle
-          className="relative z-80 text-[#F5F0E8] hover:bg-[#161616] hover:text-[#C9A84C] lg:hidden"
+          className="relative z-80 size-12 justify-self-end rounded-full border border-[#2A2A2A] bg-[#0F0F0F]/45 text-[#F5F0E8] hover:bg-[#161616] hover:text-[#C9A84C] lg:hidden"
           aria-label="Open menu"
           aria-expanded={sheetOpen}
           aria-controls="mobile-navigation"

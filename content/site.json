@@ -1,7 +1,7 @@
 {
   "navigation": {
-    "brandPrefix": "Nova",
-    "brandAccent": "PR",
+    "brandPrefix": "prfor",
+    "brandAccent": "brand",
     "links": [
       {
         "label": "Home",
@@ -51,10 +51,10 @@
     "quickLinksHeading": "Quick Links",
     "servicesHeading": "Services",
     "contactHeading": "Contact",
-    "address": "3rd Floor, 211, Phase 3, Okhla, New Delhi, India",
-    "phone": "+91 93325 52737",
-    "email": "hello@novapr.in",
-    "copyright": "NovaPR (c) 2026. All rights reserved.",
+    "address": "212 N. 2nd St. STE 100, Richmond, KY 40475",
+    "phone": "9871670798",
+    "email": "Hello@prforbrand.com",
+    "copyright": "prforbrand (c) 2026. All rights reserved.",
     "legal": "Privacy Policy | Terms & Conditions",
     "socials": [
       {
@@ -300,7 +300,7 @@
   },
   "about": {
     "hero": {
-      "eyebrow": "- The NovaPR Studio -",
+      "eyebrow": "- The prforbrand Studio -",
       "headingLineOne": "A communications house",
       "headingLineTwo": "built for ambitious brands.",
       "description": "Strategy, story, and execution in one considered room - for brands that want sharper visibility and a presence that earns trust.",
@@ -1315,7 +1315,7 @@
         "title": "A direct assessment of where communications strategy can genuinely help.",
         "paragraphs": [
           "A strategy consultation is a 30-minute conversation covering your current communications position, your commercial objectives, and the specific challenge or opportunity you are trying to address.",
-          "At the end, you will have a clear sense of whether PR is the right lever for your goals, what an engagement with NovaPR would look like, and what results are realistically achievable in what timeframe.",
+          "At the end, you will have a clear sense of whether PR is the right lever for your goals, what an engagement with prforbrand would look like, and what results are realistically achievable in what timeframe.",
           "No obligation follows. Some consultations confirm that PR is the right investment and we agree to scope an engagement. Others clarify that a different approach would better serve your goals, and we say so. Either outcome is useful for you."
         ],
         "highlights": [
@@ -1338,29 +1338,28 @@
           "label": "Email",
           "title": "Detailed enquiries, RFPs, or first questions.",
           "description": "For detailed enquiries, RFP submissions, or initial questions before scheduling a call. We respond within one business day.",
-          "value": "hello@novapr.co",
-          "href": "mailto:hello@novapr.co"
+          "value": "Hello@prforbrand.com",
+          "href": "mailto:Hello@prforbrand.com"
         },
         {
-          "label": "LinkedIn",
-          "title": "Professional introductions through your network.",
-          "description": "For professional introductions and initial contact from the network. We check and respond to LinkedIn messages during business hours.",
-          "value": "linkedin.com/company/novapr",
-          "href": "https://www.linkedin.com/company/novapr",
-          "external": true
+          "label": "Phone",
+          "title": "Speak with the team directly.",
+          "description": "For direct contact about consultations, service enquiries, or active opportunities.",
+          "value": "9871670798",
+          "href": "tel:9871670798"
         },
         {
-          "label": "For Press Enquiries",
-          "title": "Direct access for journalists and commentary requests.",
-          "description": "Journalists seeking expert commentary on communications, PR industry matters, or brand strategy can reach us directly. We respond to media enquiries within four hours during business hours.",
-          "value": "press@novapr.co",
-          "href": "mailto:press@novapr.co"
+          "label": "Address",
+          "title": "Registered office address.",
+          "description": "Use this address for official correspondence and business records.",
+          "value": "212 N. 2nd St. STE 100, Richmond, KY 40475",
+          "href": "/contact"
         }
       ],
       "contactExpectationsIntro": {
         "label": "What To Expect",
         "title": "The first response is senior, direct, and substantive.",
-        "description": "When you reach out to NovaPR, you are contacted by a senior member of the team, not an account coordinator or business development representative. The first conversation is prepared, practical, and focused on your communications landscape rather than a generic agency pitch."
+        "description": "When you reach out to prforbrand, you are contacted by a senior member of the team, not an account coordinator or business development representative. The first conversation is prepared, practical, and focused on your communications landscape rather than a generic agency pitch."
       },
       "contactExpectations": [
         {
@@ -1444,7 +1443,7 @@
       "contactReasonsIntro": {
         "label": "Why This Conversation Is Worth Having",
         "title": "Clarity is valuable even before an engagement exists.",
-        "description": "The first conversation costs nothing and commits you to nothing. It is simply the most efficient way to determine whether NovaPR can genuinely help with what you are trying to achieve."
+        "description": "The first conversation costs nothing and commits you to nothing. It is simply the most efficient way to determine whether prforbrand can genuinely help with what you are trying to achieve."
       },
       "contactReasons": [
         {
@@ -1527,27 +1526,27 @@
       {
         "name": "Ravi Reddy",
         "role": "Brand Manager, Way2News",
-        "quote": "NovaPR achieved ROI excellence with their promotion strategies. Their cost-effective approach and focus on measurable results significantly contributed to our brand's success."
+        "quote": "prforbrand achieved ROI excellence with their promotion strategies. Their cost-effective approach and focus on measurable results significantly contributed to our brand's success."
       },
       {
         "name": "Sumit Mall",
         "role": "Head of Communications, Heal Foundation",
-        "quote": "NovaPR's PR efforts generated impactful results. Their dedication amplified our message, connected us with a broader audience, and created a genuine partnership."
+        "quote": "prforbrand's PR efforts generated impactful results. Their dedication amplified our message, connected us with a broader audience, and created a genuine partnership."
       },
       {
         "name": "Sanket Narkar",
         "role": "Head of Marketing, Physics Wallah",
-        "quote": "We soared to new heights with NovaPR's PR prowess. Their expertise elevated our visibility and market presence, and the personalized attention truly set them apart."
+        "quote": "We soared to new heights with prforbrand's PR prowess. Their expertise elevated our visibility and market presence, and the personalized attention truly set them apart."
       },
       {
         "name": "Gayatri GL",
         "role": "Brand Manager, Coin Fantasy",
-        "quote": "We found a reliable partner in NovaPR. Their consistent support strengthened our brand image and built trust among our most important stakeholders."
+        "quote": "We found a reliable partner in prforbrand. Their consistent support strengthened our brand image and built trust among our most important stakeholders."
       },
       {
         "name": "Abhishek Sarkar",
         "role": "Assistant Manager PR, GM Modular",
-        "quote": "NovaPR delivers results. Since partnering with them, we have seen a measurable boost in recognition and a stronger response to every campaign launch."
+        "quote": "prforbrand delivers results. Since partnering with them, we have seen a measurable boost in recognition and a stronger response to every campaign launch."
       },
       {
         "name": "Ashok Reddy",
@@ -1558,7 +1557,7 @@
     "timeline": [
       {
         "year": "2016",
-        "title": "NovaPR takes shape",
+        "title": "prforbrand takes shape",
         "description": "The agency began with a focused belief that brands deserved communications partners who could think strategically and execute quickly."
       },
       {
@@ -1584,7 +1583,7 @@
       {
         "year": "2026",
         "title": "Scaling the next chapter",
-        "description": "Today, NovaPR operates as a multi-disciplinary growth and reputation partner for brands that want sharper presence and stronger outcomes."
+        "description": "Today, prforbrand operates as a multi-disciplinary growth and reputation partner for brands that want sharper presence and stronger outcomes."
       }
     ],
     "teamMembers": [

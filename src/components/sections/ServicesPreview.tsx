@@ -224,7 +224,6 @@ export default function ServicesPreview() {
                       fill
                       sizes="60vw"
                       className="object-cover"
-                      priority
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,15,15,0.95)_0%,rgba(15,15,15,0.5)_40%,rgba(15,15,15,0.05)_70%)]" />
                     <div className="absolute inset-x-0 bottom-0 p-10">

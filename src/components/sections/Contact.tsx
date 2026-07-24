@@ -5,8 +5,10 @@ import {
   Check,
   Clock3,
   Mail,
+  MapPin,
   MessageCircle,
   Newspaper,
+  Phone,
   Send,
   ShieldCheck,
 } from "lucide-react"
@@ -31,6 +33,8 @@ import { site } from "@/lib/site-content"
 
 const contactOptionIcons = {
   Email: Mail,
+  Phone,
+  Address: MapPin,
   LinkedIn: Send,
   "For Press Enquiries": Newspaper,
 } as const
@@ -100,10 +104,10 @@ export default function Contact() {
                   Request Consultation
                 </GoldButton>
                 <Link
-                  href="mailto:hello@novapr.co"
+                  href="mailto:Hello@prforbrand.com"
                   className="group inline-flex min-h-11 items-center gap-3 font-ui text-[11px] uppercase tracking-[0.28em] text-[#C9A84C] transition-colors duration-700 hover:text-[#F5F0E8]"
                 >
-                  <span>Email NovaPR</span>
+                  <span>Email prforbrand</span>
                   <span className="h-px w-10 bg-[#C9A84C] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:w-14 group-hover:bg-[#F5F0E8]" />
                 </Link>
               </div>
@@ -207,13 +211,14 @@ export default function Contact() {
                 contactOptionIcons[
                   option.label as keyof typeof contactOptionIcons
                 ] ?? Mail
+              const isExternal = "external" in option && option.external
 
               return (
                 <FadeUp key={option.label} delay={Math.min(0.05 * (index + 1), 0.18)}>
                   <Link
                     href={option.href}
-                    target={option.external ? "_blank" : undefined}
-                    rel={option.external ? "noreferrer" : undefined}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noreferrer" : undefined}
                     className="group relative flex h-full flex-col overflow-hidden rounded-[30px] border border-[#C9A84C]/12 bg-[#161616] p-7 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-1 hover:border-[#C9A84C]/24"
                   >
                     <div className="pointer-events-none absolute right-[-24px] top-[-18px] size-28 rounded-full bg-[#C9A84C]/[0.05] blur-3xl transition-transform duration-700 group-hover:scale-125" />

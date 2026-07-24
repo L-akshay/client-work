@@ -1,5 +1,3 @@
-"use client"
-
 import FadeUp from "@/components/ui/FadeUp"
 import SectionLabel from "@/components/ui/SectionLabel"
 import TestimonialCard from "@/components/ui/TestimonialCard"
@@ -9,13 +7,11 @@ import { site } from "@/lib/site-content"
 type TestimonialMarqueeRowProps = {
   items: typeof testimonials
   direction: "left" | "right"
-  duration: string
 }
 
 function TestimonialMarqueeRow({
   items,
   direction,
-  duration,
 }: TestimonialMarqueeRowProps) {
   const duplicatedItems = [...items, ...items, ...items]
 
@@ -23,9 +19,10 @@ function TestimonialMarqueeRow({
     <div className="overflow-hidden py-3">
       <div
         className={`flex w-max items-stretch gap-6 ${
-          direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
-        } hover:[animation-play-state:paused]`}
-        style={{ animationDuration: duration }}
+          direction === "left"
+            ? "animate-testimonial-marquee-left"
+            : "animate-testimonial-marquee-right"
+        }`}
       >
         {duplicatedItems.map((testimonial, index) => (
           <div
@@ -84,7 +81,6 @@ export default function Testimonials() {
           <TestimonialMarqueeRow
             items={testimonials}
             direction="left"
-            duration="48s"
           />
         </div>
       </div>

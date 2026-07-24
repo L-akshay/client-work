@@ -7,13 +7,13 @@ export function PageIntro() {
   const [show, setShow] = useState(true)
 
   useEffect(() => {
-    if (sessionStorage.getItem("nova_intro_seen")) {
+    if (sessionStorage.getItem("prforbrand_intro_seen")) {
       const t = setTimeout(() => setShow(false), 0)
       return () => clearTimeout(t)
     }
     const t = setTimeout(() => {
       setShow(false)
-      sessionStorage.setItem("nova_intro_seen", "1")
+      sessionStorage.setItem("prforbrand_intro_seen", "1")
     }, 1800)
     return () => clearTimeout(t)
   }, [])
@@ -33,7 +33,7 @@ export function PageIntro() {
             transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
             className="font-serif text-4xl font-light text-offwhite"
           >
-            Nova<span className="text-gold italic">PR</span>
+            prfor<span className="text-gold italic">brand</span>
           </motion.div>
         </motion.div>
       )}

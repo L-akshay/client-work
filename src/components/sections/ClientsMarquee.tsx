@@ -1,5 +1,3 @@
-"use client"
-
 import { site } from "@/lib/site-content"
 
 function MarqueeRow({ items, direction }: { items: string[], direction: "left" | "right" }) {

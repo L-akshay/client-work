@@ -10,14 +10,14 @@ export default function PageLoader() {
     let shouldShowLoader = false
 
     try {
-      const hasSeenLoader = window.sessionStorage.getItem("novapr-loader-seen")
+      const hasSeenLoader = window.sessionStorage.getItem("prforbrand-loader-seen")
 
       if (hasSeenLoader) {
         return
       }
 
       shouldShowLoader = true
-      window.sessionStorage.setItem("novapr-loader-seen", "true")
+      window.sessionStorage.setItem("prforbrand-loader-seen", "true")
     } catch {
       shouldShowLoader = true
     }
@@ -45,7 +45,7 @@ export default function PageLoader() {
           className="pointer-events-none fixed inset-0 z-[120] flex items-center justify-center bg-[#0f0f0f]"
         >
           <p className="font-serif text-4xl font-medium tracking-[0.08em] text-offwhite sm:text-5xl">
-            Nova<span className="text-gold">PR</span>
+            prfor<span className="text-gold">brand</span>
           </p>
         </motion.div>
       ) : null}

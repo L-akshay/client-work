@@ -30,9 +30,10 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://prforbrand.com"),
   title: {
-    default: "NovaPR | Premium PR & Marketing Agency",
-    template: "%s | NovaPR",
+    default: "prforbrand | Premium PR & Marketing Agency",
+    template: "%s | prforbrand",
   },
   description:
     "Strategic PR, social, creative, influencer, and search campaigns for ambitious brands.",

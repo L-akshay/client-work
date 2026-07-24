@@ -11,6 +11,21 @@ import { Input } from "@/components/ui/input"
 import SupabaseSetupNotice from "@/components/portal/SupabaseSetupNotice"
 import { hasSupabaseEnv } from "@/lib/supabase/config"
 
+function getSignupErrorMessage(message?: string) {
+  if (message?.toLowerCase().includes("email rate limit")) {
+    return "Supabase email rate limit exceeded. Turn off Confirm Email in Authentication -> Providers -> Email, then wait for the current rate-limit window to clear before trying again."
+  }
+
+  if (message?.toLowerCase().includes("email signups are disabled")) {
+    return "Email signup is disabled in Supabase. Enable Email/Password and Allow new users to sign up in Authentication -> Providers -> Email."
+  }
+
+  return (
+    message ||
+    "We could not create that account. Try another email or password."
+  )
+}
+
 export default function SignupPage() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
@@ -55,7 +70,7 @@ export default function SignupPage() {
 
     setSubmitting(true)
     const supabase = createClient()
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -67,15 +82,20 @@ export default function SignupPage() {
     })
 
     if (signUpError) {
-      setError(
-        signUpError.message ||
-          "We could not create that account. Try another email or password."
-      )
+      setError(getSignupErrorMessage(signUpError.message))
       setSubmitting(false)
       return
     }
 
-    router.replace("/login?notice=created")
+    if (data.session) {
+      router.replace("/dashboard")
+      return
+    }
+
+    setError(
+      "Account created, but Supabase email confirmation is still enabled. Disable Confirm Email in Authentication -> Providers -> Email so new users can sign in immediately without a confirmation email."
+    )
+    setSubmitting(false)
   }
 
   return (
@@ -93,8 +113,8 @@ export default function SignupPage() {
             Start with a client workspace.
           </h1>
           <p className="mt-6 max-w-xl font-ui text-base leading-[1.9] text-[#A9A196]">
-            New accounts are created as clients. After signup, an admin can
-            assign projects and publish updates to your dashboard.
+            New accounts are created as clients and can sign in immediately
+            when Supabase email confirmation is disabled.
           </p>
         </div>
 

@@ -14,19 +14,11 @@ import { hasSupabaseEnv } from "@/lib/supabase/config"
 export default function LoginPage() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
-  const [notice, setNotice] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     if (!hasSupabaseEnv()) {
       return
-    }
-
-    const params = new URLSearchParams(window.location.search)
-    if (params.get("notice") === "created") {
-      setNotice(
-        "Account created. Sign in after confirming your email if confirmation is enabled."
-      )
     }
 
     // If already signed in, skip straight to the dashboard.
@@ -45,7 +37,6 @@ export default function LoginPage() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setError(null)
-    setNotice(null)
 
     const formData = new FormData(event.currentTarget)
     const email = String(formData.get("email") ?? "").trim()
@@ -155,12 +146,6 @@ export default function LoginPage() {
                 {error}
               </p>
             ) : null}
-            {notice ? (
-              <p className="rounded-2xl border border-[#C9A84C]/20 bg-[#C9A84C]/10 px-4 py-3 font-ui text-sm text-[#F5F0E8]">
-                {notice}
-              </p>
-            ) : null}
-
             <Button
               type="submit"
               disabled={submitting}

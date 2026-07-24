@@ -7,6 +7,10 @@ type TinaQueryResult = {
 }
 
 export async function getTinaSiteContent(): Promise<TinaQueryResult | null> {
+  if (process.env.NODE_ENV === "production") {
+    return null
+  }
+
   if (process.env.TINA_PUBLIC_IS_LOCAL !== "true") {
     return null
   }

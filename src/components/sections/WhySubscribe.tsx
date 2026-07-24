@@ -1,6 +1,3 @@
-"use client"
-
-import { motion } from "framer-motion"
 import {
   AlertTriangle,
   BarChart2,
@@ -25,18 +22,11 @@ const iconMap = {
 
 type CardContent = (typeof site.home.whySubscribe.cards)[number]
 
-function Card({ card, index }: { card: CardContent; index: number }) {
+function Card({ card }: { card: CardContent }) {
   const Icon = iconMap[card.icon as keyof typeof iconMap] ?? Shield
 
   return (
-    <motion.article
-      initial={false}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.09,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
+    <article
       className="group relative flex flex-col gap-6 overflow-hidden border-b border-r border-[#2a2a2a] bg-transparent p-8 transition-colors duration-700 hover:bg-[#161616]"
     >
       <div className="absolute left-0 top-0 h-[1.5px] w-0 bg-gradient-to-r from-[#C9A84C] to-transparent transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:w-full" />
@@ -60,18 +50,9 @@ function Card({ card, index }: { card: CardContent; index: number }) {
       </div>
 
       <div className="mt-auto h-px w-full overflow-hidden bg-transparent">
-        <motion.div
-          className="h-full origin-left bg-[#C9A84C]/30"
-          initial={false}
-          animate={{ scaleX: 1 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.3 + index * 0.09,
-            ease: [0.25, 0.1, 0.25, 1],
-          }}
-        />
+        <div className="h-full origin-left scale-x-100 bg-[#C9A84C]/30" />
       </div>
-    </motion.article>
+    </article>
   )
 }
 
@@ -92,8 +73,8 @@ export default function WhySubscribe() {
         </FadeUp>
 
         <div className="mt-16 grid grid-cols-1 border-l border-t border-[#2a2a2a] md:grid-cols-2 lg:grid-cols-3">
-          {content.cards.map((card, index) => (
-            <Card key={card.id} card={card} index={index} />
+          {content.cards.map((card) => (
+            <Card key={card.id} card={card} />
           ))}
         </div>
       </div>

@@ -64,8 +64,12 @@ Replace `admin@example.com` with your admin email.
 For a simple internal portal:
 
 - Keep Email/Password enabled.
-- If you want users to sign in immediately after you create them, disable email confirmation in **Authentication -> Providers -> Email**.
-- If you keep email confirmation enabled, users must confirm their email before password login works.
+- Enable **Allow new users to sign up**.
+- Disable **Confirm Email** in **Authentication -> Providers -> Email**.
+- With **Confirm Email** disabled, Supabase will not send signup confirmation emails and users can sign in immediately after registering.
+- If **Allow new users to sign up** is disabled, the signup form will show `Email signups are disabled`.
+- If **Confirm Email** is enabled, browser `signUp` calls will send confirmation emails and return no session until the email is confirmed.
+- If you see `email rate limit exceeded`, Supabase is still attempting to send auth emails. Disable **Confirm Email**, save the provider settings, and wait for the rate-limit window to reset before trying again.
 
 ## 5. Run locally
 

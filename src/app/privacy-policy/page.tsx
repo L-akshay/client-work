@@ -4,7 +4,7 @@ import LegalPage from "@/components/legal/LegalPage"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for NovaPR.",
+  description: "Privacy Policy for prforbrand.",
 }
 
 const sections = [
@@ -39,7 +39,8 @@ const sections = [
   {
     title: "Contact",
     body: [
-      "For privacy questions or requests, contact us at hello@novapr.in.",
+      "For privacy questions or requests, contact us at Hello@prforbrand.com.",
+      "You can also call us at 9871670798 or write to VILLAGE IMALIYAKA, GAUTAM BUDH NAGAR, PIN: 201310, UTTAR PRADESH, INDIA.",
     ],
   },
 ]
@@ -48,7 +49,7 @@ export default function PrivacyPolicyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      description="This policy explains how NovaPR collects, uses, protects, and handles information shared with us."
+      description="This policy explains how prforbrand collects, uses, protects, and handles information shared with us."
       updated="June 1, 2026"
       sections={sections}
     />

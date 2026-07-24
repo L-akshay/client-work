@@ -32,7 +32,7 @@ export default function About() {
               Integrated PR &amp; Marketing Agency
             </h2>
             <p className="mt-6 font-sans text-base leading-relaxed font-light text-[#888880] sm:text-lg">
-              Welcome to NovaPR, your partner in strategic communication
+              Welcome to prforbrand, your partner in strategic communication
               excellence. We specialise in crafting compelling narratives,
               building media relationships, and delivering measurable results.
               With a dynamic team of industry experts, we customise PR
